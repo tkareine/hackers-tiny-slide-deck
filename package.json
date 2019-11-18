@@ -1,0 +1,19 @@
+{
+  "name": "hackers-tiny-slide-deck",
+  "private": true,
+  "scripts": {
+    "build": "npm run build-css && npm run build-js",
+    "build-css": "node-sass --output-style compressed htsd.css > htsd.min.css",
+    "build-js": "terser --compress --comments -- htsd.js > htsd.min.js",
+    "build-example": "mkdir -p build && marked --gfm -i example.md > build/example.html",
+    "publish-example": "git checkout master && git checkout -B tmp-gh-pages && npm run build-css && npm run build-js && npm run build-example && cp htsd.min.* build/ && git add -f build && git commit -m 'Generated example' && git subtree split --prefix build -b gh-pages && git push -f origin gh-pages && git branch -D gh-pages && git checkout master"
+  },
+  "devDependencies": {
+    "marked": "^0.7.0",
+    "node-sass": "^4.13.0",
+    "terser": "^4.4.0"
+  },
+  "engines": {
+    "node": ">= 12"
+  }
+}
