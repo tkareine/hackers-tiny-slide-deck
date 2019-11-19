@@ -3,11 +3,11 @@
   "private": true,
   "scripts": {
     "clean": "rm -fr build node_modules",
-    "build": "npm run build-css && npm run build-js",
     "build-css": "node-sass --output-style compressed htsd.css > htsd.min.css",
     "build-js": "terser --compress --comments -- htsd.js > htsd.min.js",
+    "build-lib": "npm run build-css && npm run build-js",
     "build-example": "mkdir -p build && marked --gfm -i example.md > build/example.html",
-    "publish-example": "git checkout master && git checkout -B tmp-gh-pages && npm run build-css && npm run build-js && npm run build-example && cp htsd.min.* build/ && git add -f build && git commit -m 'Generated example' && git subtree split --prefix build -b gh-pages && git push -f origin gh-pages && git branch -D gh-pages && git checkout master"
+    "publish-example": "git checkout master && git checkout -B tmp-gh-pages && npm run build-lib && npm run build-example && cp htsd.min.* build/ && git add -f build && git commit -m 'Generated example' && git subtree split --prefix build -b gh-pages && git push -f origin gh-pages && git branch -D gh-pages && git checkout master"
   },
   "devDependencies": {
     "marked": "^0.7.0",
