@@ -51,7 +51,7 @@ This is the second last slide. Go see the end already!
 
 Thank you!
 
-<link rel="stylesheet" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
+<link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Mono:400,700);
 :root {

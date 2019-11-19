@@ -2,8 +2,8 @@
 
 Turn a Markdown document into a slide deck, in two steps:
 
-1. Add `<link>` and `<script>` tags linking this tool to the bottom of
-   the Markdown document.
+1. Add `<link>` and `<script>` tags linking this tool to the end of the
+   Markdown document.
 
 2. Convert the Markdown document into html.
 
@@ -55,7 +55,7 @@ I'm the second slide.
 
 Thank you!
 
-<link rel="stylesheet" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
+<link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
 <script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js"></script>
 ```
 
