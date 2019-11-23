@@ -40,6 +40,11 @@ html {
 }
 
 body {
+  visibility: hidden;
+}
+
+body.htsd--installed {
+  visibility: visible;
   width: 100vw;
   height: 100vh;
   background-color: var(--htsd-body-bg-color);

@@ -4,8 +4,9 @@
  */
 ;(function(self) {
   const version = "0.0.1-dev"
-  const slideClassName = "htsd-slide"
-  const slideShownClassName = "htsd-slide--shown"
+  const classNS = "htsd"
+  const slideClassName = classNS + "-slide"
+  const slideShownClassName = slideClassName + "--shown"
 
   const installSlides = () => {
     const headerRegex = /^h(\d)$/i
@@ -115,9 +116,14 @@
     })
   }
 
+  const markInstalled = () => {
+    document.querySelector("body").classList.add(classNS + "--installed")
+  }
+
   const installAll = () => {
     installSlides()
     installNavigation()
+    markInstalled()
   }
 
   ;(function autoInstall() {
@@ -130,6 +136,7 @@
     installAll,
     installNavigation,
     installSlides,
+    markInstalled,
     version
   })
 })(window)
