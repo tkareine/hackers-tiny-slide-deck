@@ -1,9 +1,9 @@
-# Hacker's Tiny Slide Deck
+# Hacker's Tiny Slide Deck (HTSD)
 
 Turn a Markdown document into a slide deck, in two steps:
 
-1. Add `<link>` and `<script>` tags linking this tool to the end of the
-   Markdown document.
+1. Add `<link>` and `<script>` tags linking HTSD CSS and JavaScript
+   files to the end of the Markdown document.
 
 2. Convert the Markdown document into html.
 
@@ -23,12 +23,12 @@ the converted [html][example.html].
 
 ## Features
 
-* Responsive css, with automatically scaling text size.
-* You can adjust text size with the browser's zoom function.
+* Responsive CSS, with automatically scaling text size.
+* You can still adjust text size with the browser's zoom function.
 * Keyboard shortcuts to change slides, `←` (left arrow) and `→` (right
   arrow).
 * Keyboard shortcut to toggle fullscreen, `shift+f`.
-* Built for modern browsers.
+* Built for modern browsers (no support for old browsers).
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
 * Might be one of the fastest ways to prepare a slide deck!
@@ -55,11 +55,11 @@ I'm the second slide.
 
 Thank you!
 
-<link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
-<script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js"></script>
+<link rel="stylesheet" media="screen" href="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/htsd.min.css" />
+<script type="text/javascript" src="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/htsd.min.js"></script>
 ```
 
-Convert the `.md` file prepared above to `.html`. Here, using `marked`:
+Convert the `.md` file prepared above to `.html`. Here, using [marked]:
 
 ``` shell
 marked -i example.md > example.html
@@ -81,9 +81,10 @@ generated from a Markdown document into slides.
 
 ```
 
-The contents of each slide get wrapped in a `<div>` tag, with css class
-`htsd-slide`. Every slide will have that as the base class. In addition,
-slides may have additional modifier classes; read below for more.
+The contents of each slide get wrapped in a `<div>` tag, with style
+class `htsd-slide`. Every slide will have that as the base class. In
+addition, slides may have additional modifier classes; read below for
+more.
 
 You can utilize the base class (`htsd-slide`) and modifier classes
 (`htsd-slide--modifier`) for custom styling.
@@ -112,10 +113,12 @@ Here, the slide with `<h1>Title</h1>` will have the `htsd-slide--h1`
 modifier class in addition to the `htsd-slide` base class. The slide
 with `<h2>Topic</h2>` gets modifier class `htsd-slide--h2`.
 
-### Customization
+## Customization
+
+### Customize styles
 
 To customize styles, use a `<style>` tag after importing `htsd.min.css`
-with `<link>`. There's custom css properties to help your tuning needs:
+with `<link>`. There's custom CSS properties to help your tuning needs:
 
 ``` css
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
@@ -134,10 +137,50 @@ with `<link>`. There's custom css properties to help your tuning needs:
 }
 ```
 
+### Highlight syntax inside `<code>` tags
+
 You can enable syntax highlighting inside `<code>` tags with an external
 JavaScript library, such as [Prism.js].
 
 See the end of [example.md] to see how to highlight code with Prism.js.
+
+### Install HTSD manually
+
+By default, loading `htsd.min.js` with the `<script>` tag automatically
+installs the `<div>` tags for wrapping content into slides and
+navigation keyboard shortcuts. If you want to install them manually, use
+`data-manual` attribute in the `<script>` tag. For example:
+
+``` markdown
+<script type="text/javascript" src="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/htsd.min.js" data-manual></script>
+```
+
+HTSD provides the following object in `window`:
+
+``` javascript
+window.htsd = {
+  // calls `installSlides`, `installNavigation`, and `markInstalled`
+  installAll: () => undefined,
+
+  // makes keyboard shortcuts available
+  installNavigation: () => undefined,
+
+  // wraps content into `<div class="htsd-slide">` tags, to be used as slides
+  installSlides: () => undefined,
+
+  // adds `htsd--installed` class to the `<body>` tag
+  markInstalled: () => undefined,
+
+  // contains HTSD version number
+  version: string
+}
+```
+
+Now, you can call `installAll` manually:
+
+``` markdown
+<script type="text/javascript">window.htsd.installAll()</script>
+```
 
 ## License
 

@@ -1,49 +1,83 @@
 # Hacker's Tiny Slide Deck
 
-## A demonstration
+## (Or HTSD in short)
 
-Use `←` (left arrow) and `→` (right arrow) to change slides, `shift+f`
-to toggle fullscreen.
+### A feature demonstration
 
-_18.11.2019_
+Press ➡️ (right arrow) to go to the next slide.
+
+_23rd Nov 2019_
 
 ---
 
-## The purpose
+## Keyboard shortcuts
 
-* Show bullets (this slide)
-* Show code snippet (next slide)
-* Show end slide, centered (last slide)
+⬅️ (left arrow) to show the previous slide
+
+➡️ (right arrow) to show the next slide
+
+Shift+F to toggle fullscreen
+
+---
 
 ## Code snippet
 
-Some JavaScript code to demonstrate syntax highlighting:
-
-### The code
+An implementation in JavaScript to calculate the [Fibonacci number], to
+demonstrate syntax highlighting with [Prism.js]:
 
 ``` javascript
-/* comment 1 */
-const mkSlide = () => {
-  const slideEl = document.createElement("div")
-  slideEl.className = slideClassName  // NOTE: beware
-  nextSlideContentEls.forEach(e => {
-    bodyEl.removeChild(e)
-    slideEl.appendChild(e)
-  })
-  nextSlideContentEls = []
-  return slideEl
+/* iterative implementation */
+function fibonacci(n) {
+  let a = 1
+  let b = 0
+  let temp
+
+  while (n >= 0) {
+    temp = a
+    a = a + b
+    b = temp
+    n -= 1
+  }
+
+  return b
 }
 ```
+
+(You might have to scroll to reach here, and that's intentional.)
+
+---
+
+## Usage
+
+1. Prepare a Markdown document, like for the [example][example.md]
+   you're looking at. Separate content between intended slides with
+   `---` (three dashes, these become as `<hr>` tags in the html
+   conversion).
+
+2. Add `<link>` and `<script>` tags linking HTSD CSS and JavaScript
+   files to the end of the Markdown document.
+
+3. Convert the Markdown document into html. For example, try the
+   [marked] tool.
+
+---
+
+## How it works
+
+HTSD looks for `<hr>` tags in the html conversion of the Markdown
+document, and wraps the contents between the `<hr>`s into `<div>`
+tags. CSS styles turn these `<div>`s into slides.
+
+Then, HTDS installs keyboard shortcuts for navigation.
 
 ---
 
 ## Customization
 
-See the bottom of the Markdown source of this slide deck.
+See the bottom of the [Markdown source][example.md] of this slide deck
+and the [README].
 
----
-
-This is the second last slide. Go see the end already!
+Being tiny, you can easily hack the implementation for your own needs!
 
 ---
 
@@ -51,8 +85,18 @@ This is the second last slide. Go see the end already!
 
 Thank you!
 
+The code is available at GitHub:<br>
+[hackers-tiny-slide-deck]
+
+[Fibonacci number]: https://en.wikipedia.org/wiki/Fibonacci_number
+[Prism.js]: https://prismjs.com/
+[README]: https://github.com/tkareine/hackers-tiny-slide-deck/blob/master/README.md
+[example.md]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md
+[hackers-tiny-slide-deck]: https://github.com/tkareine/hackers-tiny-slide-deck/
+[marked]: https://github.com/markedjs/marked
+
 <link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
-<style type="text/css">
+<style type="text/css" media="screen">
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Mono:400,700);
 :root {
   --htsd-sans-font-family: 'Roboto', sans-serif;
