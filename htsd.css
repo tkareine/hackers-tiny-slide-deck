@@ -3,7 +3,9 @@
   --htsd-slide-bg-color: #303030;
   --htsd-slide-shadow-color: #1a1a1a;
   --htsd-header-color: #f3f3f3;
+  --htsd-highlight-color: #f3f3f3;
   --htsd-text-color: #dcdccc;
+  --htsd-line-height: 1.4;
   --htsd-min-font-size: 16px;
   --htsd-min-viewport-width: 800px;
   --htsd-sans-font-family: sans-serif;
@@ -34,7 +36,7 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
 
 html {
   font-family: var(--htsd-sans-font-family);
-  font-size: calc(var(--htsd-min-font-size) + 1.1vmin);
+  font-size: calc(var(--htsd-min-font-size) + 1.4vmin);
 }
 
 body {
@@ -48,6 +50,7 @@ body {
   padding: 4vh 5vw;
   box-sizing: border-box;
   display: none;
+  line-height: var(--htsd-line-height);
   background-color: var(--htsd-slide-bg-color);
   color: var(--htsd-text-color);
   box-shadow: 0 0 4vw var(--htsd-slide-shadow-color);
@@ -68,6 +71,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .htsd-slide h1,
@@ -108,19 +113,33 @@ body {
   color: var(--htsd-header-color);
 }
 
+.htsd-slide li {
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.htsd-slide a {
+  color: var(--htsd-highlight-color);
+  text-decoration: underline;
+}
+
 .htsd-slide em {
   font-style: italic;
 }
 
+.htsd-slide strong {
+  font-style: bold;
+}
+
 .htsd-slide code {
+  color: var(--htsd-highlight-color);
   font-family: var(--htsd-mono-font-family);
 }
 
 .htsd-slide pre code {
+  color: var(--htsd-text-color);
   font-size: 0.9rem;
   white-space: pre;
   overflow-wrap: normal;
-  line-height: 1.4;
 }
 
 .htsd-slide .token.comment,
