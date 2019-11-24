@@ -122,17 +122,39 @@ body.htsd--installed {
   margin: 0.5rem 0 0.5rem 0;
 }
 
+.htsd-slide table {
+  border-collapse: collapse;
+}
+
+.htsd-slide th,
+.htsd-slide td {
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  text-align: left;
+}
+
+.htsd-slide th {
+  color: var(--htsd-highlight-color);
+  font-weight: bold;
+}
+
+.htsd-slide blockquote {
+  color: var(--htsd-highlight-color);
+  font-style: italic;
+}
+
 .htsd-slide a {
   color: var(--htsd-highlight-color);
   text-decoration: underline;
 }
 
 .htsd-slide em {
+  color: var(--htsd-highlight-color);
   font-style: italic;
 }
 
 .htsd-slide strong {
-  font-style: bold;
+  color: var(--htsd-highlight-color);
+  font-weight: bold;
 }
 
 .htsd-slide code {
