@@ -34,6 +34,8 @@ the converted [html][example.html].
 * Built for modern browsers (no support for old browsers).
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
+* Printing the html document is unaffected; CSS styles are for screen
+  media only.
 * Might be one of the fastest ways to prepare a slide deck!
 
 ## Usage
@@ -120,8 +122,9 @@ with `<h2>Topic</h2>` gets modifier class `htsd-slide--h2`.
 
 ### Customize styles
 
-To customize styles, use a `<style>` tag after importing `htsd.min.css`
-with `<link>`. There's custom CSS properties to help your tuning needs:
+To customize styles, use a `<style media="screen">` tag after importing
+`htsd.min.css` with `<link>`. There are custom CSS properties to help
+your tuning needs:
 
 ``` css
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
