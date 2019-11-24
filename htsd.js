@@ -89,6 +89,23 @@
       }
     }
 
+    const showFirstSlide = () => {
+      if (currentSlide !== 0) {
+        hideSlide(currentSlide)
+        currentSlide = 0
+        showSlide(currentSlide)
+      }
+    }
+
+    const showLastSlide = () => {
+      let lastSlide = totalSlides - 1
+      if (currentSlide !== lastSlide) {
+        hideSlide(currentSlide)
+        currentSlide = lastSlide
+        showSlide(currentSlide)
+      }
+    }
+
     const toggleFullscreen = () => {
       if (document.fullscreenEnabled) {
         if (document.fullscreenElement) {
@@ -108,6 +125,14 @@
         case "ArrowLeft":
           e.preventDefault()
           showPreviousSlide()
+          break
+        case "Home":
+          e.preventDefault()
+          showFirstSlide()
+          break
+        case "End":
+          e.preventDefault()
+          showLastSlide()
           break
         case "F":
           toggleFullscreen()

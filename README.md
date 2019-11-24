@@ -25,9 +25,12 @@ the converted [html][example.html].
 
 * Responsive CSS, with automatically scaling text size.
 * You can still adjust text size with the browser's zoom function.
-* Keyboard shortcuts to change slides, `←` (left arrow) and `→` (right
-  arrow).
-* Keyboard shortcut to toggle fullscreen, `shift+f`.
+* Keyboard shortcuts to change slides:
+  * ⬅️ (left arrow) to show the previous slide
+  * ➡️ (right arrow) to the next slide
+  * Home to show the first slide
+  * End to show the last slide
+* Keyboard shortcut to toggle fullscreen, Shift+F.
 * Built for modern browsers (no support for old browsers).
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.

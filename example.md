@@ -16,6 +16,10 @@ _23rd Nov 2019_
 
 ➡️ (right arrow) to show the next slide
 
+Home to show the first slide
+
+End to show the last slide
+
 Shift+F to toggle fullscreen
 
 ---
