@@ -60,8 +60,8 @@ I'm the second slide.
 
 Thank you!
 
-<link rel="stylesheet" media="screen" href="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/htsd.min.css" />
-<script type="text/javascript" src="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/htsd.min.js"></script>
+<link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
+<script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js"></script>
 ```
 
 Convert the `.md` file prepared above to `.html`. Here, using [marked]:
@@ -158,7 +158,7 @@ navigation keyboard shortcuts. If you want to install them manually, use
 `data-manual` attribute in the `<script>` tag. For example:
 
 ``` markdown
-<script type="text/javascript" src="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/htsd.min.js" data-manual></script>
+<script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js" data-manual></script>
 ```
 
 HTSD provides the following object in `window`:
