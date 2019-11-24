@@ -85,8 +85,8 @@ body.htsd--installed {
 .htsd-slide h3,
 .htsd-slide p,
 .htsd-slide blockquote,
-.htsd-slide ul,
-.htsd-slide ol {
+.htsd-slide > ul,
+.htsd-slide > ol {
   margin: 1rem auto;
 }
 
