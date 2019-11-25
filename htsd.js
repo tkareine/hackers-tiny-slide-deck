@@ -3,7 +3,7 @@
  *  @license MIT
  */
 ;(function(self) {
-  const version = "0.0.1-dev"
+  const version = "0.0.1-head"
   const classNS = "htsd"
   const slideClassName = classNS + "-slide"
   const slideShownClassName = slideClassName + "--shown"
