@@ -185,7 +185,7 @@ window.htsd = {
 Now, you can call `installAll` manually:
 
 ``` markdown
-<script type="text/javascript">window.htsd.installAll()</script>
+<script type="text/javascript">htsd.installAll()</script>
 ```
 
 ## License
