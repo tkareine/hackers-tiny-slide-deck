@@ -124,6 +124,7 @@ body.htsd--installed {
 
 .htsd-slide table {
   border-collapse: collapse;
+  color: var(--htsd-text-color);
 }
 
 .htsd-slide th,
