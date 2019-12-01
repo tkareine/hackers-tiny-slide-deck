@@ -99,7 +99,6 @@ The code is available at GitHub:<br>
 [hackers-tiny-slide-deck]: https://github.com/tkareine/hackers-tiny-slide-deck/
 [marked]: https://github.com/markedjs/marked
 
-<link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
 <style type="text/css" media="screen">
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Mono:400,700);
 :root {
@@ -107,5 +106,5 @@ The code is available at GitHub:<br>
   --htsd-mono-font-family: 'Roboto Mono', monospace;
 }
 </style>
-<script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js"></script>
+<script type="text/javascript" src="htsd.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>

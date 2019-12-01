@@ -3,16 +3,22 @@
   "private": true,
   "scripts": {
     "clean": "rm -fr build node_modules",
-    "lib:build:css": "mkdir -p build && node-sass --output-style compressed htsd.css > build/htsd.min.css",
-    "lib:build:js": "mkdir -p build && terser --compress --comments -- htsd.js > build/htsd.min.js",
-    "lib:build": "npm run lib:build:css && npm run lib:build:js",
+    "lib:build": "mkdir -p build && webpack",
+    "lib:serve": "mkdir -p build && webpack-dev-server",
     "example:build": "mkdir -p build && marked --gfm -i example.md > build/example.html",
-    "example:publish": "git checkout master && git checkout -B tmp-gh-pages && npm run lib:build && npm run example:build && cp htsd.{css,js} build/ && git add -f build && git commit -m 'Generated example' && git subtree split --prefix build -b gh-pages && git push -f origin gh-pages && git branch -D gh-pages && git checkout master"
+    "example:publish": "git checkout master && git checkout -B tmp-gh-pages && npm run clean && NODE_ENV=production npm run lib:build && npm run example:build && git add -f build && git commit -m 'Generated example' && git subtree split --prefix build -b gh-pages && git push -f origin gh-pages && git branch -D gh-pages && git checkout master"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
     "marked": "^0.7.0",
-    "node-sass": "^4.13.0",
-    "terser": "^4.4.0"
+    "style-loader": "^1.0.1",
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   },
   "engines": {
     "node": ">= 12"
