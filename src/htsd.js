@@ -10,6 +10,7 @@ const slideClassName = classNS + "-slide"
 const slideShownClassName = slideClassName + "--shown"
 
 const installSlides = () => {
+  const skipTagsFromSlides = ["script", "style"]
   const headerRegex = /^h(\d)$/i
   const bodyEl = document.querySelector("body")
 
@@ -43,14 +44,22 @@ const installSlides = () => {
 
   while (el != null) {
     const nextEl = el.nextSibling
-    if (el.tagName === "HR") {
-      bodyEl.removeChild(el)
-      if (nextSlideContentEls.length) {
-        slideEls.push(mkSlide())
+
+    if (el.tagName) {
+      const tag = el.tagName.toLowerCase()
+
+      if (tag === "hr") {
+        bodyEl.removeChild(el)
+        if (nextSlideContentEls.length) {
+          slideEls.push(mkSlide())
+        }
+      } else if (!skipTagsFromSlides.includes(tag)) {
+        nextSlideContentEls.push(el)
       }
     } else {
       nextSlideContentEls.push(el)
     }
+
     el = nextEl
   }
 
