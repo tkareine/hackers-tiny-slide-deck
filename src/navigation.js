@@ -1,6 +1,8 @@
 export const installNavigation = (slideClassName, slideShownClassName) => {
   let currentSlide = 0
   let totalSlides = document.querySelectorAll("body > ." + slideClassName).length
+  let touchStartXY = null
+  let minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
   const hideSlide = n => {
     document.querySelectorAll("body > ." + slideClassName)[n].classList.remove(slideShownClassName)
@@ -53,7 +55,7 @@ export const installNavigation = (slideClassName, slideShownClassName) => {
     }
   }
 
-  document.addEventListener("keydown", e => {
+  const onKeyDown = e => {
     switch (e.key) {
       case "ArrowRight":
         e.preventDefault()
@@ -72,8 +74,47 @@ export const installNavigation = (slideClassName, slideShownClassName) => {
         showLastSlide()
         break
       case "F":
+        e.preventDefault()
         toggleFullscreen()
         break
     }
-  })
+  }
+
+  const getTouchXY = e => {
+    const touch = e.changedTouches[0]
+    return [touch.clientX, touch.clientY]
+  }
+
+  const onTouchStart = e => {
+    touchStartXY = getTouchXY(e)
+  }
+
+  const onTouchEnd = e => {
+    if (touchStartXY !== null) {
+      const touchEndXY = getTouchXY(e)
+      const dx = touchEndXY[0] - touchStartXY[0]
+      const dy = touchEndXY[1] - touchStartXY[1]
+      const absDx = Math.abs(dx)
+      const absDy = Math.abs(dy)
+
+      if (absDx > absDy && absDx > minHorizontalSwipeDelta) {
+        if (dx > 0) {
+          showPreviousSlide()
+        } else {
+          showNextSlide()
+        }
+      }
+
+      resetTouch()
+    }
+  }
+
+  const resetTouch = () => {
+    touchStartXY = null
+  }
+
+  document.addEventListener("keydown", onKeyDown, false)
+  document.addEventListener("touchstart", onTouchStart, false)
+  document.addEventListener("touchend", onTouchEnd, false)
+  document.addEventListener("touchcancel", resetTouch, false)
 }
