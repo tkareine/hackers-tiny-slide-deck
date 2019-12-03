@@ -7,7 +7,7 @@
     "lib:build": "mkdir -p build && webpack",
     "lib:serve": "mkdir -p build && webpack-dev-server",
     "test:build": "mkdir -p build && marked -i test/fixture/slides-many.md > build/slides-many.html",
-    "test:ci": "npm run clean && npm run test:build && start-server-and-test lib:serve 'http-get://localhost:8080' test:run",
+    "test:ci": "npm run clean && npm run test:build && NODE_ENV=production start-server-and-test lib:serve 'http-get://localhost:8080' test:run",
     "test:open": "cypress open",
     "test:run": "cypress run",
     "example:build": "mkdir -p build && marked --gfm -i example.md > build/example.html",
