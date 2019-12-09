@@ -6,21 +6,21 @@
 
 Press ➡️ (right arrow) to go to the next slide.
 
-_23rd Nov 2019_
+_9th Dec 2019_
 
 ---
 
 ## Keyboard shortcuts
 
-⬅️ (left arrow) to show the previous slide
+⬅️ (left arrow) or _swipe left gesture_ to show the previous slide
 
-➡️ (right arrow) to show the next slide
+➡️ (right arrow) or _swipe right gesture_ to show the next slide
 
-Home to show the first slide
+`Home` to show the first slide
 
-End to show the last slide
+`End` to show the last slide
 
-Shift+F to toggle fullscreen
+`Shift+F` to toggle fullscreen
 
 ---
 

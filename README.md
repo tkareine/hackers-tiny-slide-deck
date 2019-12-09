@@ -1,22 +1,32 @@
 # Hacker's Tiny Slide Deck (HTSD)
 
+[![npm version](https://badge.fury.io/js/hackers-tiny-slide-deck.svg)][HTSD-npm-package]
+
 Turn a Markdown document into a slide deck, in two steps:
 
-1. Add `<link>` and `<script>` tags linking HTSD CSS and JavaScript
-   files to the end of the Markdown document.
+1. Add a `<script>` tag linking the HTSD JavaScript bundle to the end of
+   the Markdown document. For example:
 
-2. Convert the Markdown document into html.
+   ``` html
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"></script>
+   ```
 
-This might be a preferable option for preparing a quick presentation.
+   (Replace `VERSION` with the version of this [npm
+   package][HTSD-npm-package].)
 
-Use an editor plugin to perform step 2, preferably via a keyboard
+2. Convert the Markdown document into html. For example, using [marked]:
+
+   ``` shell
+   marked -i example.md > example.html
+   ```
+
+This might be the preferable option for preparing a quick presentation.
+
+Use an editor plugin to speed-up step 2, preferably via a keyboard
 shortcut. For example, [markdown-mode] for Emacs has the
 `markdown-export-and-preview` (`C-c C-c v`) command that can convert the
 `.md` file in the current buffer to a `.html` file and open the html in
 the default browser.
-
-Alternatively, use a command line tool directly to convert your `.md`
-file to `.html`. A good choice is [marked], for example.
 
 To demonstrate the features quickly, see the sources of [example.md] and
 the converted [html][example.html].
@@ -26,22 +36,24 @@ the converted [html][example.html].
 * Responsive CSS, with automatically scaling text size.
 * You can still adjust text size with the browser's zoom function.
 * Keyboard shortcuts to change slides:
-  * ⬅️ (left arrow) to show the previous slide
-  * ➡️ (right arrow) to the next slide
-  * Home to show the first slide
-  * End to show the last slide
-* Keyboard shortcut to toggle fullscreen, Shift+F.
+  * `⬅️` (left arrow) to show the previous slide
+  * `➡️` (right arrow) to the next slide
+  * `Home` to show the first slide
+  * `End` to show the last slide
+* Keyboard shortcut to toggle fullscreen, `Shift+F`.
+* Swipe left and right gestures to change slides on mobile browsers.
 * Built for modern browsers (no support for old browsers).
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
+* Tiny, currently 11.5kb in size (bundled, minified).
 * Printing the html document is unaffected; CSS styles are for screen
   media only.
 * Might be one of the fastest ways to prepare a slide deck!
 
 ## Usage
 
-Prepare a Markdown document, with `<link>` and `<script>` tags linking
-to `htsd.min.css` and `htsd.min.js`, respectively:
+Prepare a Markdown document, with a `<script>` tag linking to
+`htsd.min.js`:
 
 ``` markdown
 # Title
@@ -60,9 +72,11 @@ I'm the second slide.
 
 Thank you!
 
-<link rel="stylesheet" media="screen" href="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.css" />
-<script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"></script>
 ```
+
+Where `VERSION` in the `src` attribute above refers to a version of this
+[npm package][HTSD-npm-package].)
 
 Convert the `.md` file prepared above to `.html`. Here, using [marked]:
 
@@ -122,9 +136,8 @@ with `<h2>Topic</h2>` gets modifier class `htsd-slide--h2`.
 
 ### Customize styles
 
-To customize styles, use a `<style media="screen">` tag after importing
-`htsd.min.css` with `<link>`. There are custom CSS properties to help
-your tuning needs:
+Use a `<style media="screen">` tag to customize styles. There are custom
+CSS properties to help your tuning needs:
 
 ``` css
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
@@ -143,6 +156,8 @@ your tuning needs:
 }
 ```
 
+See the end of [example.md] for another example.
+
 ### Highlight syntax inside `<code>` tags
 
 You can enable syntax highlighting inside `<code>` tags with an external
@@ -158,7 +173,7 @@ navigation keyboard shortcuts. If you want to install them manually, use
 `data-manual` attribute in the `<script>` tag. For example:
 
 ``` markdown
-<script type="text/javascript" src="https://tkareine.github.io/hackers-tiny-slide-deck/htsd.min.js" data-manual></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js" data-manual></script>
 ```
 
 HTSD provides the following object in `window`:
@@ -192,9 +207,10 @@ Now, you can call `installAll` manually:
 
 MIT. See [LICENSE.txt].
 
+[HTSD-npm-package]: https://www.npmjs.com/package/hackers-tiny-slide-deck
 [LICENSE.txt]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/LICENSE.txt
 [Prism.js]: https://prismjs.com/
-[example.md]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md
 [example.html]: https://tkareine.github.io/hackers-tiny-slide-deck/example.html
+[example.md]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md
 [markdown-mode]: https://jblevins.org/projects/markdown-mode/
 [marked]: https://github.com/markedjs/marked
