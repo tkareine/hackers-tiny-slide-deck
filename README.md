@@ -5,7 +5,8 @@
 Turn a Markdown document into a slide deck, in two steps:
 
 1. Add a `<script>` tag linking the HTSD JavaScript bundle to the end of
-   the Markdown document. For example:
+   the Markdown document. For example, accessing the bundle from
+   [jsDelivr] service:
 
    ``` html
    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"></script>
@@ -212,5 +213,6 @@ MIT. See [LICENSE.txt].
 [Prism.js]: https://prismjs.com/
 [example.html]: https://tkareine.github.io/hackers-tiny-slide-deck/example.html
 [example.md]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md
+[jsDelivr]: https://www.jsdelivr.com/
 [markdown-mode]: https://jblevins.org/projects/markdown-mode/
 [marked]: https://github.com/markedjs/marked
