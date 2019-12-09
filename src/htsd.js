@@ -1,10 +1,10 @@
 /** Hacker's Tiny Slide Deck
- *  @author Tuomas Kareinen
+ *  @author Tuomas Kareinen <tkareine@gmail.com>
  *  @license MIT
  */
 import "./htsd.css"
 
-const version = "0.0.2-head.2"
+const version = process.env.npm_package_version
 const classNS = "htsd"
 const slideClassName = classNS + "-slide"
 const slideShownClassName = slideClassName + "--shown"

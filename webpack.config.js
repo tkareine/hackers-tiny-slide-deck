@@ -1,4 +1,5 @@
 const path = require("path")
+const { EnvironmentPlugin } = require("webpack")
 const TerserPlugin = require("terser-webpack-plugin")
 
 console.log("NODE_ENV: " + process.env.NODE_ENV)
@@ -36,6 +37,7 @@ module.exports = {
       })
     ]
   },
+  plugins: [new EnvironmentPlugin(["npm_package_version"])],
   module: {
     rules: [
       {
