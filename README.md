@@ -173,7 +173,7 @@ installs the `<div>` tags for wrapping content into slides and
 navigation keyboard shortcuts. If you want to install them manually, use
 `data-manual` attribute in the `<script>` tag. For example:
 
-``` markdown
+``` html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js" data-manual></script>
 ```
 
@@ -200,7 +200,7 @@ window.htsd = {
 
 Now, you can call `installAll` manually:
 
-``` markdown
+``` html
 <script type="text/javascript">htsd.installAll()</script>
 ```
 
