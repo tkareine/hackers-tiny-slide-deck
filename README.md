@@ -4,8 +4,8 @@
 
 Turn a Markdown document into a slide deck, in two steps:
 
-1. Add a `<script>` tag linking the HTSD JavaScript bundle to the end of
-   the Markdown document. For example, accessing the bundle from
+1. Add a `<script>` tag referring the HTSD JavaScript bundle to the end
+   of the Markdown document. For example, accessing the bundle from
    [jsDelivr] service:
 
    ``` html
@@ -23,10 +23,10 @@ Turn a Markdown document into a slide deck, in two steps:
 
 This might be the preferable option for preparing a quick presentation.
 
-Use an editor plugin to speed-up step 2, preferably via a keyboard
+Use an editor plugin to make step 2 easier, preferably via a keyboard
 shortcut. For example, [markdown-mode] for Emacs has the
-`markdown-export-and-preview` (`C-c C-c v`) command that can convert the
-`.md` file in the current buffer to a `.html` file and open the html in
+`markdown-export-and-preview` (`C-c C-c v`) command, which converts the
+`.md` file in the current buffer to a `.html` file and opens the html in
 the default browser.
 
 To demonstrate the features quickly, see the sources of [example.md] and
@@ -38,7 +38,7 @@ the converted [html][example.html].
 * You can still adjust text size with the browser's zoom function.
 * Keyboard shortcuts to change slides:
   * ⬅️ (left arrow) to show the previous slide
-  * ➡️ (right arrow) to the next slide
+  * ➡️ (right arrow) to show the next slide
   * `Home` to show the first slide
   * `End` to show the last slide
 * Keyboard shortcut to toggle fullscreen, `Shift+F`.
@@ -53,7 +53,7 @@ the converted [html][example.html].
 
 ## Usage
 
-Prepare a Markdown document, with a `<script>` tag linking to
+Prepare a Markdown document, with a `<script>` tag referring
 `htsd.min.js`:
 
 ``` markdown
@@ -76,8 +76,8 @@ Thank you!
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"></script>
 ```
 
-Where `VERSION` in the `src` attribute above refers to a version of this
-[npm package][HTSD-npm-package].)
+Where `VERSION` in the `<script>`'s `src` attribute refers to a version
+of this [npm package][HTSD-npm-package].)
 
 Convert the `.md` file prepared above to `.html`. Here, using [marked]:
 
@@ -170,7 +170,7 @@ See the end of [example.md] to see how to highlight code with Prism.js.
 
 By default, loading `htsd.min.js` with the `<script>` tag automatically
 installs the `<div>` tags for wrapping content into slides and
-navigation keyboard shortcuts. If you want to install them manually, use
+navigation shortcuts. If you want to install them manually, use
 `data-manual` attribute in the `<script>` tag. For example:
 
 ``` html
@@ -184,7 +184,7 @@ window.htsd = {
   // calls `installSlides`, `installNavigation`, and `markInstalled`
   installAll: () => undefined,
 
-  // makes keyboard shortcuts available
+  // makes keyboard shortcuts and swipe gestures available
   installNavigation: () => undefined,
 
   // wraps content into `<div class="htsd-slide">` tags, to be used as slides
