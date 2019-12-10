@@ -28,7 +28,7 @@ context("Slides, many", () => {
     })
   })
 
-  it("keeps <script> and <style> tags in place, removes <hr>, inserts slides", () => {
+  it("keeps <script> and <style> tags in place in <body>, removes <hr>, inserts slides", () => {
     cy.get("body")
       .children()
       .should(el => {
@@ -44,6 +44,13 @@ context("Slides, many", () => {
           ["div", "htsd-slide htsd-slide--h1"]
         ])
       })
+  })
+
+  it("injects <style> tag into <head>", () => {
+    cy.get("head style").should(el => {
+      expect(el.length).to.equal(1)
+      expect(el[0].getAttribute("media")).to.equal("screen")
+    })
   })
 
   it("navigates with keys", () => {
