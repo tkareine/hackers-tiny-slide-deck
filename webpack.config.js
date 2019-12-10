@@ -5,6 +5,7 @@ const TerserPlugin = require("terser-webpack-plugin")
 console.log("NODE_ENV: " + process.env.NODE_ENV)
 
 const isProdEnv = process.env.NODE_ENV === "production"
+const isDevServer = process.env.WEBPACK_DEV_SERVER === "true"
 const srcDir = path.resolve(__dirname, "src")
 const buildDir = path.resolve(__dirname, "build")
 
@@ -25,8 +26,16 @@ module.exports = {
     extensions: [".js"]
   },
   performance: {
-    maxAssetSize: 12 * 1024,
-    maxEntrypointSize: 12 * 1024
+    hints: (() => {
+      if (isProdEnv && !isDevServer) {
+        return "error"
+      }
+      if (isDevServer) {
+        return false
+      }
+      return "warning"
+    })(),
+    maxAssetSize: 12 * 1024
   },
   optimization: {
     minimizer: [
