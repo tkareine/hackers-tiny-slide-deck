@@ -1,6 +1,7 @@
 # Hacker's Tiny Slide Deck (HTSD)
 
 [![npm version](https://badge.fury.io/js/hackers-tiny-slide-deck.svg)][HTSD-npm-package]
+[![CI](https://github.com/tkareine/hackers-tiny-slide-deck/workflows/CI/badge.svg)][HTSD-CI]
 
 Turn a Markdown document into a slide deck, in two steps:
 
@@ -208,6 +209,7 @@ Now, you can call `installAll` manually:
 
 MIT. See [LICENSE.txt].
 
+[HTSD-CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions?workflow=CI
 [HTSD-npm-package]: https://www.npmjs.com/package/hackers-tiny-slide-deck
 [LICENSE.txt]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/LICENSE.txt
 [Prism.js]: https://prismjs.com/
