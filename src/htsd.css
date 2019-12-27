@@ -35,18 +35,18 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
 }
 
 html {
+  height: 100%;
   font-family: var(--htsd-sans-font-family);
   font-size: calc(var(--htsd-min-font-size) + 1.4vmin);
 }
 
 body {
+  height: 100%;
   visibility: hidden;
 }
 
 body.htsd--installed {
   visibility: visible;
-  width: 100%;
-  height: 100%;
   background-color: var(--htsd-body-bg-color);
 }
 
