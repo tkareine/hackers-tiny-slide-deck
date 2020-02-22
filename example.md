@@ -53,26 +53,34 @@ function fibonacci(n) {
 
 ## Usage
 
-1. Prepare a Markdown document, like for the [example][example.md]
-   you're looking at. Separate content between intended slides with
-   `---` (three dashes, these become as `<hr>` tags in the html
+1. Prepare a Markdown document, like the [example][example.md]
+   you're looking at currently. Separate content between intended slides
+   with `---` (three dashes, these become as `<hr>` tags in the html
    conversion).
 
-2. Add `<link>` and `<script>` tags linking HTSD CSS and JavaScript
-   files to the end of the Markdown document.
+2. Append a `<script>` tag linking the HTSD JavaScript bundle to the end
+   of the Markdown document.
 
-3. Convert the Markdown document into html. For example, try the
-   [marked] tool.
+3. Turn the Markdown document into html using a general-purpose
+   markdown-to-html converter (such as [marked]).
 
 ---
 
 ## How it works
 
-HTSD looks for `<hr>` tags in the html conversion of the Markdown
-document, and wraps the contents between the `<hr>`s into `<div>`
-tags. CSS styles turn these `<div>`s into slides.
+The `<script>` tag makes the browser to load the HTSD JavaScript bundle,
+which transforms the html document into a slideshow. The transformation
+happens in-browser, with these steps:
 
-Then, HTDS installs keyboard shortcuts for navigation.
+1. The script injects an inline CSS `<style>` tag into the `<head>` of
+   the document. The styles are used to display `<div
+   class="htsd-slide">` tags (created next) as slides.
+
+2. The script looks for `<hr>` tags that are direct childs of the
+   `<body>` tag, and wraps the contents between the `<hr>`s into `<div
+   class="htsd-slide">` tags.
+
+3. Then, the script installs keyboard shortcuts for navigation.
 
 ---
 
