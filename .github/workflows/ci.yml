@@ -4,13 +4,36 @@ on: [push]
 
 jobs:
   build_and_test:
+    name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout git repository
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - uses: actions/setup-node@v1
+      - name: Setup node.js
+        uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - run: npm ci
-      - run: npm test
+      - name: Restore or mark caching ~/.npm
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Restore or mark caching ~/.cache/Cypress
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Verify Cypress installation
+        env:
+          CI: 1
+        run: ./node_modules/.bin/cypress verify
+      - name: Run tests
+        run: npm test
