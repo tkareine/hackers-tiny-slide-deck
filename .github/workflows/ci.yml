@@ -6,6 +6,10 @@ jobs:
   build_and_test:
     name: Build and test
     runs-on: ubuntu-latest
+    env:
+      # Reduce ANSI terminal output for webpack and Cypress
+      CI: 1
+      NO_COLOR: 1
     steps:
       - name: Checkout git repository
         uses: actions/checkout@v2
@@ -29,11 +33,9 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cypress-
-      - name: Install npm dependencies
+      - name: Install npm dependencies and build HTSD
         run: npm ci
       - name: Verify Cypress installation
-        env:
-          CI: 1
         run: ./node_modules/.bin/cypress verify
       - name: Run tests
         run: npm test
