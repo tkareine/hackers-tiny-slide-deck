@@ -59,10 +59,7 @@ module.exports = {
         use: [
           {
             loader: "style-loader",
-            options: {
-              injectType: "styleTag",
-              attributes: { media: "screen" }
-            }
+            options: { injectType: "styleTag" }
           },
           { loader: "css-loader" }
         ]

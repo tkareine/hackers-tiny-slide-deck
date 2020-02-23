@@ -49,7 +49,7 @@ context("Slides, many", () => {
   it("injects <style> tag into <head>", () => {
     cy.get("head style").should(el => {
       expect(el.length).to.equal(1)
-      expect(el[0].getAttribute("media")).to.equal("screen")
+      expect(el[0].textContent).to.match(/^@media screen {/)
     })
   })
 
