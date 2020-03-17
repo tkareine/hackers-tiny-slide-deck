@@ -19,14 +19,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Restore or mark caching ~/.npm
+      - name: Cache ~/.npm
         uses: actions/cache@v1
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
-      - name: Restore or mark caching ~/.cache/Cypress
+      - name: Cache ~/.cache/Cypress
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
