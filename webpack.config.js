@@ -51,7 +51,6 @@ module.exports = {
     rules: [
       {
         test: (f) => path.extname(f) === ".js" && f.startsWith(srcDir + "/"),
-        include: [buildDir],
         loader: "babel-loader",
       },
       {
