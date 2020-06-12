@@ -11,7 +11,7 @@ export const installSlides = (slideClassName, slideShownClassName) => {
     slideEl.className = slideClassName
     let lowestHeaderFound = null
 
-    nextSlideContentEls.forEach(e => {
+    nextSlideContentEls.forEach((e) => {
       const headerMatch = headerRegex.exec(e.tagName)
       if (headerMatch && (lowestHeaderFound === null || headerMatch[1] < lowestHeaderFound)) {
         lowestHeaderFound = Number(headerMatch[1])
@@ -56,6 +56,6 @@ export const installSlides = (slideClassName, slideShownClassName) => {
     slideEls.push(mkSlide())
   }
 
-  slideEls.slice(0, 1).forEach(e => e.classList.add(slideShownClassName))
-  slideEls.forEach(e => bodyEl.appendChild(e))
+  slideEls.slice(0, 1).forEach((e) => e.classList.add(slideShownClassName))
+  slideEls.forEach((e) => bodyEl.appendChild(e))
 }

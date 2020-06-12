@@ -36,5 +36,5 @@ window.htsd = Object.freeze({
   installNavigation,
   installSlides,
   markInstalled,
-  version
+  version,
 })

@@ -4,11 +4,11 @@ export const installNavigation = (slideClassName, slideShownClassName) => {
   let touchStartXY = null
   let minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
-  const hideSlide = n => {
+  const hideSlide = (n) => {
     document.querySelectorAll("body > ." + slideClassName)[n].classList.remove(slideShownClassName)
   }
 
-  const showSlide = n => {
+  const showSlide = (n) => {
     document.querySelectorAll("body > ." + slideClassName)[n].classList.add(slideShownClassName)
   }
 
@@ -55,7 +55,7 @@ export const installNavigation = (slideClassName, slideShownClassName) => {
     }
   }
 
-  const onKeyDown = e => {
+  const onKeyDown = (e) => {
     switch (e.key) {
       case "ArrowRight":
         e.preventDefault()
@@ -80,16 +80,16 @@ export const installNavigation = (slideClassName, slideShownClassName) => {
     }
   }
 
-  const getTouchXY = e => {
+  const getTouchXY = (e) => {
     const touch = e.changedTouches[0]
     return [touch.clientX, touch.clientY]
   }
 
-  const onTouchStart = e => {
+  const onTouchStart = (e) => {
     touchStartXY = getTouchXY(e)
   }
 
-  const onTouchEnd = e => {
+  const onTouchEnd = (e) => {
     if (touchStartXY !== null) {
       const touchEndXY = getTouchXY(e)
       const dx = touchEndXY[0] - touchStartXY[0]

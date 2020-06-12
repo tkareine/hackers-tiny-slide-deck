@@ -11,19 +11,19 @@ const buildDir = path.resolve(__dirname, "build")
 
 module.exports = {
   entry: {
-    htsd: path.resolve(srcDir, "htsd.js")
+    htsd: path.resolve(srcDir, "htsd.js"),
   },
   output: {
     path: buildDir,
-    filename: "[name].min.js"
+    filename: "[name].min.js",
   },
   mode: isProdEnv ? "production" : "development",
   devtool: "source-map",
   devServer: {
-    contentBase: buildDir
+    contentBase: buildDir,
   },
   resolve: {
-    extensions: [".js"]
+    extensions: [".js"],
   },
   performance: {
     hints: (() => {
@@ -35,35 +35,35 @@ module.exports = {
       }
       return "warning"
     })(),
-    maxAssetSize: 12 * 1024
+    maxAssetSize: 12 * 1024,
   },
   optimization: {
     minimizer: [
       new TerserPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true
-      })
-    ]
+        sourceMap: true,
+      }),
+    ],
   },
   plugins: [new EnvironmentPlugin(["npm_package_version"])],
   module: {
     rules: [
       {
-        test: f => path.extname(f) === ".js" && f.startsWith(srcDir + "/"),
+        test: (f) => path.extname(f) === ".js" && f.startsWith(srcDir + "/"),
         include: [buildDir],
-        loader: "babel-loader"
+        loader: "babel-loader",
       },
       {
         test: /\.css$/,
         use: [
           {
             loader: "style-loader",
-            options: { injectType: "styleTag" }
+            options: { injectType: "styleTag" },
           },
-          { loader: "css-loader" }
-        ]
-      }
-    ]
-  }
+          { loader: "css-loader" },
+        ],
+      },
+    ],
+  },
 }
