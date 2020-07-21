@@ -8,26 +8,38 @@
     npm ci && npm test
     ```
 
-3. Double check that example works:
+3. Check that the example slides work:
 
     ``` shell
     npm run example:build && npm run lib:serve
     open http://localhost:8080/example.html
     ```
 
-4. Update version number:
+4. Check that the difference of the current production build
+   (`build/htsd.min.js`) compared to the previous build available at
+   GitHub Pages (`origin/gh-pages`) is sensible:
+
+    ``` shell
+    NODE_ENV=production npm run lib:build
+    npm run lib:diffBuild
+    ```
+
+   The aim here is to skim the differences between the builds for any
+   unexpected changes.
+
+5. Update version number:
 
     ``` shell
     $EDITOR package.json
     ```
 
-5. Describe a summary of changes since the last release:
+6. Describe a summary of changes since the last release:
 
     ``` shell
     $EDITOR CHANGELOG.md
     ```
 
-6. Review your changes, commit them, tag the release:
+7. Review your changes, commit them, tag the release:
 
     ``` shell
     git diff
@@ -37,13 +49,13 @@
     git push origin master --tags
     ```
 
-7. Update and publish example:
+8. Update and publish example:
 
     ``` shell
     npm run example:publish
     ```
 
-8. Publish npm package:
+9. Publish npm package:
 
     ``` shell
     npm publish
