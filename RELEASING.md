@@ -46,7 +46,7 @@
     git add -p
     git commit -m 'Release version $version'
     git tag v$version
-    git push origin master --tags
+    git push origin master v$version
     ```
 
 8. Update and publish example:
