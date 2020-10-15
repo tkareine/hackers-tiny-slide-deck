@@ -38,11 +38,10 @@ module.exports = {
     maxAssetSize: 12 * 1024,
   },
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
-        cache: true,
         parallel: true,
-        sourceMap: true,
       }),
     ],
   },
@@ -58,9 +57,16 @@ module.exports = {
         use: [
           {
             loader: "style-loader",
-            options: { injectType: "styleTag" },
+            options: {
+              injectType: "styleTag",
+            },
           },
-          { loader: "css-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: false,
+            },
+          },
         ],
       },
     ],
