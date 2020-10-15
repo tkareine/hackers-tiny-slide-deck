@@ -47,7 +47,7 @@ the converted [html][example.html].
 * Built for modern browsers (no support for old browsers).
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
-* Tiny, currently 11.0 KiB in size (bundled, minified).
+* Tiny, currently 11.0 KiB in size (bundled, minified, not compressed).
 * Printing the html document is unaffected; CSS styles are for screen
   media only.
 * Might be one of the fastest ways to prepare a slide deck!
