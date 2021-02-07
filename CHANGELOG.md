@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+* Show and apply the current slide shown from the hash part of browser
+  location.
+* Make code block font-size smaller, have it available as a CSS custom
+  property.
+* Generate id attributes for slides containing headers. This allows
+  easier writing of slide specific CSS styles.
+
 ## [v0.1.3] - 2020-10-15
 
 ### Changed

@@ -45,9 +45,12 @@ the converted [html][example.html].
 * Keyboard shortcut to toggle fullscreen, `Shift+F`.
 * Swipe left and right gestures to change slides on mobile browsers.
 * Built for modern browsers (no support for old browsers).
+* Support browser history, remember current slide shown on reload.
+* Easy slide specific CSS styles with id attributes generated from
+  headers.
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
-* Tiny, currently 11.0 KiB in size (bundled, minified, not compressed).
+* Tiny, currently 11.2 KiB in size (bundled, minified, not compressed).
 * Printing the html document is unaffected; CSS styles are for screen
   media only.
 * Might be one of the fastest ways to prepare a slide deck!
@@ -104,35 +107,41 @@ generated from a Markdown document into slides.
 
 The contents of each slide get wrapped in a `<div>` tag, with style
 class `htsd-slide`. Every slide will have that as the base class. In
-addition, slides may have additional modifier classes; read below for
-more.
+addition, slides may have additional modifier classes and id attributes;
+read below for more.
 
-You can utilize the base class (`htsd-slide`) and modifier classes
-(`htsd-slide--modifier`) for custom styling.
+You can utilize the base class (`htsd-slide`) for styling global to all
+slides.
 
-### Contents of slides with `<h1>` get centered
+### Modifier class for the highest level header in a slide
 
 ``` markdown
 # Title
+
+## Topic 1
 
 I'm centered.
-```
-
-The modifier class used for centering is `htsd-slide--h1`.
-
-### The highest header found in a slide gets injected into the class
-
-``` markdown
-# Title
 
 ---
 
-## Topic
+## Topic 2
+
+I'm not centered.
 ```
 
 Here, the slide with `<h1>Title</h1>` will have the `htsd-slide--h1`
-modifier class in addition to the `htsd-slide` base class. The slide
-with `<h2>Topic</h2>` gets modifier class `htsd-slide--h2`.
+modifier class in addition to the `htsd-slide` base class. HTSD includes
+CSS styles to center the content having the `htsd-slide--h1` class.
+
+The slide with `<h2>Topic 2</h2>` gets `htsd-slide--h2` as the modifier
+class. HTSD has no special CSS styles for header levels below level 2,
+but you can add them yourself.
+
+### Id attribute for the highest level header in a slide
+
+The text contents of the highest level header in each slide is used to
+generate the id attributes for them. You can use this in the CSS
+selectors to customize styles (see [example.md]).
 
 ## Customization
 
@@ -158,9 +167,9 @@ CSS properties to help your tuning needs:
 }
 ```
 
-See the end of [example.md] for another example.
+See the end of [example.md] for more examples.
 
-### Highlight syntax inside `<code>` tags
+### Syntax highlighting inside `<code>` tags
 
 You can enable syntax highlighting inside `<code>` tags with an external
 JavaScript library, such as [Prism.js].
