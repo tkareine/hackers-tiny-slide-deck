@@ -7,13 +7,12 @@ import "./htsd.css"
 const version = process.env.npm_package_version
 const classNS = "htsd"
 const slideClassName = classNS + "-slide"
-const slideShownClassName = slideClassName + "--shown"
 
 import { installSlides as mkSlides } from "./slides"
-const installSlides = mkSlides.bind(undefined, slideClassName, slideShownClassName)
+const installSlides = mkSlides.bind(undefined, slideClassName)
 
 import { installNavigation as mkNavigation } from "./navigation"
-const installNavigation = mkNavigation.bind(undefined, slideClassName, slideShownClassName)
+const installNavigation = mkNavigation.bind(undefined, slideClassName)
 
 const markInstalled = () => {
   document.querySelector("body").classList.add(classNS + "--installed")

@@ -1,47 +1,55 @@
-export const installNavigation = (slideClassName, slideShownClassName) => {
-  let currentSlide = 0
+export const installNavigation = (slideClassName) => {
+  const slideShownClassName = slideClassName + "--shown"
+
   let totalSlides = document.querySelectorAll("body > ." + slideClassName).length
+
+  const parseSlideNumberFromLocation = () => Math.max(1, Math.min(totalSlides, Number(document.location.hash.slice(1))))
+
+  let currentSlideIdx = parseSlideNumberFromLocation() - 1
   let touchStartXY = null
   let minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
-  const hideSlide = (n) => {
-    document.querySelectorAll("body > ." + slideClassName)[n].classList.remove(slideShownClassName)
+  const hideSlide = (idx) => {
+    document.querySelectorAll("body > ." + slideClassName)[idx].classList.remove(slideShownClassName)
   }
 
-  const showSlide = (n) => {
-    document.querySelectorAll("body > ." + slideClassName)[n].classList.add(slideShownClassName)
+  const showSlide = (idx) => {
+    document.querySelectorAll("body > ." + slideClassName)[idx].classList.add(slideShownClassName)
+    document.location.hash = "#" + (idx + 1)
   }
+
+  showSlide(currentSlideIdx)
 
   const showNextSlide = () => {
-    if (currentSlide < totalSlides - 1) {
-      hideSlide(currentSlide)
-      currentSlide += 1
-      showSlide(currentSlide)
+    if (currentSlideIdx < totalSlides - 1) {
+      hideSlide(currentSlideIdx)
+      currentSlideIdx += 1
+      showSlide(currentSlideIdx)
     }
   }
 
   const showPreviousSlide = () => {
-    if (currentSlide > 0) {
-      hideSlide(currentSlide)
-      currentSlide -= 1
-      showSlide(currentSlide)
+    if (currentSlideIdx > 0) {
+      hideSlide(currentSlideIdx)
+      currentSlideIdx -= 1
+      showSlide(currentSlideIdx)
     }
   }
 
   const showFirstSlide = () => {
-    if (currentSlide !== 0) {
-      hideSlide(currentSlide)
-      currentSlide = 0
-      showSlide(currentSlide)
+    if (currentSlideIdx !== 0) {
+      hideSlide(currentSlideIdx)
+      currentSlideIdx = 0
+      showSlide(currentSlideIdx)
     }
   }
 
   const showLastSlide = () => {
     let lastSlide = totalSlides - 1
-    if (currentSlide !== lastSlide) {
-      hideSlide(currentSlide)
-      currentSlide = lastSlide
-      showSlide(currentSlide)
+    if (currentSlideIdx !== lastSlide) {
+      hideSlide(currentSlideIdx)
+      currentSlideIdx = lastSlide
+      showSlide(currentSlideIdx)
     }
   }
 
@@ -117,4 +125,17 @@ export const installNavigation = (slideClassName, slideShownClassName) => {
   document.addEventListener("touchstart", onTouchStart, false)
   document.addEventListener("touchend", onTouchEnd, false)
   document.addEventListener("touchcancel", resetTouch, false)
+
+  const updateSlideShownUponHashChange = () => {
+    const slideNum = parseSlideNumberFromLocation()
+    const slideIdx = slideNum - 1
+    document.location.hash = "#" + slideNum
+    if (slideIdx !== currentSlideIdx) {
+      hideSlide(currentSlideIdx)
+      currentSlideIdx = slideIdx
+      showSlide(currentSlideIdx)
+    }
+  }
+
+  window.addEventListener("hashchange", updateSlideShownUponHashChange, false)
 }

@@ -80,11 +80,52 @@ happens in-browser, with these steps:
    `<body>` tag, and wraps the contents between the `<hr>`s into `<div
    class="htsd-slide">` tags.
 
-3. Then, the script installs keyboard shortcuts for navigation.
+3. Then, the script installs keyboard shortcuts, gestures, and
+   `document.location.hash` handling for navigation.
 
 ---
 
-## Customization
+## Styling customization
+
+There's a selection of [CSS custom properties] (variables) that affect
+slide looks globally.
+
+For example, set the font family for your slide deck:
+
+``` css
+:root {
+  --htsd-sans-font-family: 'Roboto', sans-serif;
+  --htsd-mono-font-family: 'Roboto Mono', monospace;
+}
+```
+
+---
+
+## Styling customization, code snippets
+
+Highlight code with [Prism.js] by appending the following line to the
+end of the Markdown document (as in the [example][example.md] you're
+looking at):
+
+``` html
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js">
+</script>
+```
+
+Use the following CSS selector to tune the font-size in the code snippet
+above smaller:
+
+``` css
+/* select the html code block in the 7th slide */
+.htsd-slide:nth-of-type(7) pre code.language-html {
+  font-size: 0.6rem;
+}
+```
+
+---
+
+## Other customizations
 
 See the bottom of the [Markdown source][example.md] of this slide deck
 and the [README].
@@ -100,6 +141,7 @@ Thank you!
 The code is available at GitHub:<br>
 [hackers-tiny-slide-deck]
 
+[CSS Custom Properties]: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 [Fibonacci number]: https://en.wikipedia.org/wiki/Fibonacci_number
 [Prism.js]: https://prismjs.com/
 [README]: https://github.com/tkareine/hackers-tiny-slide-deck/blob/master/README.md
@@ -112,6 +154,9 @@ The code is available at GitHub:<br>
 :root {
   --htsd-sans-font-family: 'Roboto', sans-serif;
   --htsd-mono-font-family: 'Roboto Mono', monospace;
+}
+.htsd-slide:nth-of-type(7) pre code.language-html {
+  font-size: 0.6rem;
 }
 </style>
 <script type="text/javascript" src="htsd.min.js"></script>

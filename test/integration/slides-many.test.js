@@ -1,5 +1,21 @@
 /// <reference types="Cypress" />
 
+const contain = (expectedContent) => (el) => {
+  expect(el.length).to.equal(1)
+
+  const tree = Array.from(el.children()).map((e) => [e.tagName.toLowerCase(), e.innerHTML])
+
+  expect(tree).to.deep.equal(expectedContent)
+}
+
+const equal = (expectedContent) => (el) => {
+  expect(el).to.equal(expectedContent)
+}
+
+const beShown = (el) => {
+  expect(el).to.have.class("htsd-slide--shown")
+}
+
 context("Slides, many", () => {
   beforeEach(() => {
     cy.visit("/slides-many.html")
@@ -54,34 +70,55 @@ context("Slides, many", () => {
   })
 
   it("navigates with keys", () => {
-    const contain = (expectedContent) => (el) => {
-      expect(el.length).to.equal(1)
-
-      const tree = Array.from(el.children()).map((e) => [e.tagName.toLowerCase(), e.innerHTML])
-
-      expect(tree).to.deep.equal(expectedContent)
-    }
+    cy.location("hash").should(equal("#1"))
+    cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
 
     cy.rightArrowKey()
-    cy.get(".htsd-slide--shown").should(contain([["h2", "Header 2"]]))
+    cy.location("hash").should(equal("#2"))
+    cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
 
     cy.endKey()
-    cy.get(".htsd-slide--shown").should(
-      contain([
-        ["h1", "Header 5"],
-        ["p", "Slide 5."],
-      ])
-    )
+    cy.location("hash").should(equal("#5"))
+    cy.get(".htsd-slide:nth-of-type(5)").should(beShown)
 
     cy.leftArrowKey()
-    cy.get(".htsd-slide--shown").should(contain([["p", "Slide 4."]]))
+    cy.location("hash").should(equal("#4"))
+    cy.get(".htsd-slide:nth-of-type(4)").should(beShown)
 
     cy.homeKey()
-    cy.get(".htsd-slide--shown").should(
-      contain([
-        ["h1", "Header 1"],
-        ["p", "Slide 1."],
-      ])
-    )
+    cy.location("hash").should(equal("#1"))
+    cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
+  })
+
+  it("update slide shown when changing hash", () => {
+    cy.location("hash").should(equal("#1"))
+    cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
+
+    cy.window().then((win) => {
+      win.location.hash = "#3"
+    })
+    cy.location("hash").should(equal("#3"))
+    cy.get(".htsd-slide:nth-of-type(3)").should(beShown)
+  })
+})
+
+context("Slides, many, opening with specific slide", () => {
+  it("shows slide #2", () => {
+    cy.visit("/slides-many.html#2")
+    cy.location("hash").should(equal("#2"))
+    cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
+  })
+  ;["0", "-1", ""].forEach((input) => {
+    it(`shows the first slide when entering #${input}`, () => {
+      cy.visit("/slides-many.html#" + input)
+      cy.location("hash").should(equal("#1"))
+      cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
+    })
+  })
+
+  it("shows the last slide when entering #6 (one past last slide)", () => {
+    cy.visit("/slides-many.html#6")
+    cy.location("hash").should(equal("#5"))
+    cy.get(".htsd-slide:nth-of-type(5)").should(beShown)
   })
 })

@@ -1,4 +1,4 @@
-export const installSlides = (slideClassName, slideShownClassName) => {
+export const installSlides = (slideClassName) => {
   const skipTagsFromSlides = ["script", "style"]
   const headerRegex = /^h(\d)$/i
   const bodyEl = document.querySelector("body")
@@ -56,6 +56,5 @@ export const installSlides = (slideClassName, slideShownClassName) => {
     slideEls.push(mkSlide())
   }
 
-  slideEls.slice(0, 1).forEach((e) => e.classList.add(slideShownClassName))
   slideEls.forEach((e) => bodyEl.appendChild(e))
 }
