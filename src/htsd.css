@@ -11,6 +11,7 @@
     --htsd-min-viewport-width: 800px;
     --htsd-sans-font-family: sans-serif;
     --htsd-mono-font-family: monospace;
+    --htsd-code-block-font-size: 0.8rem;
     --htsd-comment-code-color: #7f9f7f;
     --htsd-keyword-code-color: #f0dfaf;
     --htsd-symbol-code-color: #bfebbf;
@@ -166,7 +167,7 @@
 
   .htsd-slide pre code {
     color: var(--htsd-text-color);
-    font-size: 0.9rem;
+    font-size: var(--htsd-code-block-font-size);
     white-space: pre;
     overflow-wrap: normal;
   }
