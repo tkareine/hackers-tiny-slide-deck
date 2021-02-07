@@ -24,7 +24,7 @@
   ],
   "browser": "build/htsd.min.js",
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14"
   },
   "scripts": {
     "clean": "rm -fr build hackers-tiny-slide-deck-*.tgz",
@@ -34,7 +34,7 @@
     "lib:build": "mkdir -p build && webpack",
     "lib:diffBuild": "bash -c 'diff -u -- <(git show origin/gh-pages:htsd.min.js | prettier --parser babel) <(prettier --parser babel build/htsd.min.js)'",
     "lib:serve": "mkdir -p build && webpack serve",
-    "lint": "prettier --check '*.js' '{src,test}/**/*.js'",
+    "lint": "prettier --check '*.{mjs,js}' '{src,test}/**/*.{mjs,js}'",
     "prepublishOnly": "npm test && NODE_ENV=production npm run lib:build",
     "pretest": "npm run test:build",
     "test": "npm run lint && npm run test:ci",

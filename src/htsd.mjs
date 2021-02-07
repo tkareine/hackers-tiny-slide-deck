@@ -8,10 +8,10 @@ const version = process.env.npm_package_version
 const classNS = "htsd"
 const slideClassName = classNS + "-slide"
 
-import { installSlides as mkSlides } from "./slides"
+import { installSlides as mkSlides } from "./slides.mjs"
 const installSlides = mkSlides.bind(undefined, slideClassName)
 
-import { installNavigation as mkNavigation } from "./navigation"
+import { installNavigation as mkNavigation } from "./navigation.mjs"
 const installNavigation = mkNavigation.bind(undefined, slideClassName)
 
 const markInstalled = () => {

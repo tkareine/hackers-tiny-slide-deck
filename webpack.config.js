@@ -11,7 +11,7 @@ const buildDir = path.resolve(__dirname, "build")
 
 module.exports = {
   entry: {
-    htsd: path.resolve(srcDir, "htsd.js"),
+    htsd: path.resolve(srcDir, "htsd.mjs"),
   },
   output: {
     path: buildDir,
@@ -49,7 +49,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: (f) => path.extname(f) === ".js" && f.startsWith(srcDir + "/"),
+        test: (f) => path.extname(f) === ".mjs" && f.startsWith(srcDir + "/"),
         loader: "babel-loader",
       },
       {
