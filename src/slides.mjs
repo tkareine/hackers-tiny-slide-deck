@@ -1,3 +1,5 @@
+import { slug } from "./slug.mjs"
+
 export const installSlides = (slideClassName) => {
   const skipTagsFromSlides = ["script", "style"]
   const headerRegex = /^h(\d)$/i
@@ -9,12 +11,12 @@ export const installSlides = (slideClassName) => {
   const mkSlide = () => {
     const slideEl = document.createElement("div")
     slideEl.className = slideClassName
-    let lowestHeaderFound = null
+    let slideHeaderFound = null
 
     nextSlideContentEls.forEach((e) => {
       const headerMatch = headerRegex.exec(e.tagName)
-      if (headerMatch && (lowestHeaderFound === null || headerMatch[1] < lowestHeaderFound)) {
-        lowestHeaderFound = Number(headerMatch[1])
+      if (headerMatch && (slideHeaderFound === null || headerMatch[1] < slideHeaderFound.level)) {
+        slideHeaderFound = { level: Number(headerMatch[1]), el: e }
       }
       bodyEl.removeChild(e)
       slideEl.appendChild(e)
@@ -22,8 +24,14 @@ export const installSlides = (slideClassName) => {
 
     nextSlideContentEls = []
 
-    if (lowestHeaderFound) {
-      slideEl.classList.add(`${slideClassName}--h${lowestHeaderFound}`)
+    if (slideHeaderFound) {
+      slideEl.classList.add(`${slideClassName}--h${slideHeaderFound.level}`)
+
+      const headerSlug = slug(slideHeaderFound.el.innerText)
+
+      if (headerSlug.length) {
+        slideEl.id = `${slideClassName}--${headerSlug}`
+      }
     }
 
     return slideEl

@@ -36,16 +36,17 @@
     "lib:serve": "mkdir -p build && webpack serve",
     "lint": "prettier --check '*.{mjs,js}' '{src,test}/**/*.{mjs,js}'",
     "prepublishOnly": "npm test && NODE_ENV=production npm run lib:build",
-    "pretest": "npm run test:build",
-    "test": "npm run lint && npm run test:ci",
-    "test:build": "mkdir -p build && marked -i test/fixture/slides-many.md > build/slides-many.html",
-    "test:ci": "NODE_ENV=production start-server-and-test lib:serve 'http-get://localhost:8080' test:run",
-    "test:open": "cypress open",
-    "test:run": "cypress run"
+    "test": "npm run lint && npm run test:unit && npm run test:integration:ci",
+    "test:integration:build": "mkdir -p build && marked -i test/fixture/slides-many.md > build/slides-many.html",
+    "test:integration:ci": "npm run test:integration:build && NODE_ENV=production start-server-and-test lib:serve 'http-get://localhost:8080' test:integration:run",
+    "test:integration:open": "cypress open",
+    "test:integration:run": "cypress run",
+    "test:unit": "ava 'src/**/*.test.mjs'"
   },
   "devDependencies": {
     "@babel/core": "^7.12.0",
     "@babel/preset-env": "^7.12.0",
+    "ava": "^3.15.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^5.0.0",
     "cypress": "^6.1.0",

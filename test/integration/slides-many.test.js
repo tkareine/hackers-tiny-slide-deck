@@ -30,17 +30,25 @@ context("Slides, many", () => {
 
       expect(tree).to.deep.equal([
         [
-          ["h1", "Header 1"],
+          ["h1", "Header 1L1"],
           ["p", "Slide 1."],
         ],
-        [["h2", "Header 2"]],
+        [["h2", "Header 2L2"]],
         [],
         [["p", "Slide 4."]],
         [
-          ["h1", "Header 5"],
+          ["h2", "Header 5L2"],
+          ["h1", "Header 5L1"],
           ["p", "Slide 5."],
         ],
       ])
+    })
+  })
+
+  it("generates id attributes for slides", () => {
+    cy.get(".htsd-slide").should((el) => {
+      const ids = Array.from(el).map((e) => e.id)
+      expect(ids).to.deep.equal(["htsd-slide--header-1l1", "htsd-slide--header-2l2", "", "", "htsd-slide--header-5l1"])
     })
   })
 

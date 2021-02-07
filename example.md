@@ -80,23 +80,27 @@ happens in-browser, with these steps:
    `<body>` tag, and wraps the contents between the `<hr>`s into `<div
    class="htsd-slide">` tags.
 
-3. Then, the script installs keyboard shortcuts, gestures, and
-   `document.location.hash` handling for navigation.
+3. Then, the script installs means for the user to navigate the
+   slides. This includes keyboard shortcuts, gestures, and keeping the
+   hash in the browser location in sync with he current slide.
 
 ---
 
 ## Styling customization
 
-There's a selection of [CSS custom properties] (variables) that affect
-slide looks globally.
+HTDS comes with a selection of [CSS custom properties] (variables) that
+affect slide looks globally. You may override their values by using a
+`<style>` at the end of your Markdown document.
 
-For example, set the font family for your slide deck:
+For example, to set the font family for your slide deck:
 
-``` css
+``` html
+<style type="text/css" media="screen">
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
 :root {
   --htsd-sans-font-family: 'Roboto', sans-serif;
-  --htsd-mono-font-family: 'Roboto Mono', monospace;
 }
+</style>
 ```
 
 ---
@@ -113,15 +117,39 @@ looking at):
 </script>
 ```
 
-Use the following CSS selector to tune the font-size in the code snippet
-above smaller:
+We use the following CSS to make the font-size in the code snippets of
+this slide smaller:
 
 ``` css
 /* select the html code block in the 7th slide */
-.htsd-slide:nth-of-type(7) pre code.language-html {
+.htsd-slide:nth-of-type(7) pre code {
   font-size: 0.6rem;
 }
 ```
+
+…but instead of relying on slide numbers in building CSS selectors,
+there's a better way (see the next slide).
+
+---
+
+## Styling customization, generated ids
+
+HTSD generates id attributes for each slide from the highest header
+level contained in the slide. This makes styling selected slides
+easier.
+
+Let's paint the `<div>` below red:
+
+``` css
+#htsd-slide--styling-customization--generated-ids .red-block {
+  margin-top: 1em;
+  width: 5em;
+  height: 2em;
+  background-color: red;
+}
+```
+
+<div class="red-block"></div>
 
 ---
 
@@ -155,8 +183,18 @@ The code is available at GitHub:<br>
   --htsd-sans-font-family: 'Roboto', sans-serif;
   --htsd-mono-font-family: 'Roboto Mono', monospace;
 }
-.htsd-slide:nth-of-type(7) pre code.language-html {
+#htsd-slide--how-it-works li {
+  font-size: 0.8rem;
+}
+#htsd-slide--styling-customization pre code,
+.htsd-slide:nth-of-type(7) pre code {
   font-size: 0.6rem;
+}
+#htsd-slide--styling-customization--generated-ids .red-block {
+  margin-top: 1em;
+  width: 5em;
+  height: 2em;
+  background-color: red;
 }
 </style>
 <script type="text/javascript" src="htsd.min.js"></script>
