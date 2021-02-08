@@ -98,7 +98,7 @@ context("Slides, many", () => {
     cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
   })
 
-  it("update slide shown when changing hash", () => {
+  it("updates slide shown by changing hash", () => {
     cy.location("hash").should(equal("#1"))
     cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
 
@@ -107,6 +107,44 @@ context("Slides, many", () => {
     })
     cy.location("hash").should(equal("#3"))
     cy.get(".htsd-slide:nth-of-type(3)").should(beShown)
+  })
+
+  it("preserves browser history", () => {
+    cy.location("hash").should(equal("#1"))
+    cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
+
+    cy.rightArrowKey()
+    cy.rightArrowKey()
+    cy.location("hash").should(equal("#3"))
+    cy.get(".htsd-slide:nth-of-type(3)").should(beShown)
+
+    cy.go("back")
+    cy.location("hash").should(equal("#2"))
+    cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
+
+    cy.window().then((win) => {
+      win.location.hash = "#-1"
+    })
+    cy.location("hash").should(equal("#1"))
+    cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
+
+    cy.go("back")
+    cy.location("hash").should(equal("#2"))
+    cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
+
+    cy.window().then((win) => {
+      win.location.hash = "#1000"
+    })
+    cy.location("hash").should(equal("#5"))
+    cy.get(".htsd-slide:nth-of-type(5)").should(beShown)
+
+    cy.go("back")
+    cy.location("hash").should(equal("#2"))
+    cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
+
+    cy.go("forward")
+    cy.location("hash").should(equal("#5"))
+    cy.get(".htsd-slide:nth-of-type(5)").should(beShown)
   })
 })
 

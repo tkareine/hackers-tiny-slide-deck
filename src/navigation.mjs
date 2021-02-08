@@ -3,9 +3,9 @@ export const installNavigation = (slideClassName) => {
 
   let totalSlides = document.querySelectorAll("body > ." + slideClassName).length
 
-  const parseSlideNumberFromLocation = () => Math.max(1, Math.min(totalSlides, Number(document.location.hash.slice(1))))
+  const parseSlideNumberFromHash = (hash) => Math.max(1, Math.min(totalSlides, Number(hash.slice(1))))
 
-  let currentSlideIdx = parseSlideNumberFromLocation() - 1
+  let currentSlideIdx = parseSlideNumberFromHash(document.location.hash) - 1
   let touchStartXY = null
   let minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
@@ -126,16 +126,24 @@ export const installNavigation = (slideClassName) => {
   document.addEventListener("touchend", onTouchEnd, false)
   document.addEventListener("touchcancel", resetTouch, false)
 
-  const updateSlideShownUponHashChange = () => {
-    const slideNum = parseSlideNumberFromLocation()
-    const slideIdx = slideNum - 1
-    document.location.hash = "#" + slideNum
-    if (slideIdx !== currentSlideIdx) {
+  const onHashChange = () => {
+    const givenHash = document.location.hash
+    const givenSlideNum = parseSlideNumberFromHash(givenHash)
+    const correctHash = "#" + givenSlideNum
+    const givenSlideIdx = givenSlideNum - 1
+
+    if (givenHash !== correctHash) {
+      const url = new URL(document.location.href)
+      url.hash = correctHash
+      history.replaceState(null, "", url.href)
+    }
+
+    if (givenSlideIdx !== currentSlideIdx) {
       hideSlide(currentSlideIdx)
-      currentSlideIdx = slideIdx
+      currentSlideIdx = givenSlideIdx
       showSlide(currentSlideIdx)
     }
   }
 
-  window.addEventListener("hashchange", updateSlideShownUponHashChange, false)
+  window.addEventListener("hashchange", onHashChange, false)
 }
