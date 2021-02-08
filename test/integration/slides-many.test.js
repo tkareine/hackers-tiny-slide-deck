@@ -154,7 +154,7 @@ context("slides-many, opening with specific slide", () => {
     cy.location("hash").should(equal("#2"))
     cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
   })
-  ;["0", "-1", ""].forEach((input) => {
+  ;["0", "-1", "", "asdf"].forEach((input) => {
     it(`shows the first slide when entering #${input}`, () => {
       cy.visit("/slides-many.html#" + input)
       cy.location("hash").should(equal("#1"))

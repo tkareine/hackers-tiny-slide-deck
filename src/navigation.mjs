@@ -1,3 +1,5 @@
+import { parseIntInRange } from "./parsing.mjs"
+
 const replaceLocationHash = (newHash) => {
   const url = new URL(document.location.href)
   url.hash = newHash
@@ -11,7 +13,7 @@ export const installNavigation = (slideClassName) => {
 
   const minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
-  const parseSlideNumberFromHash = (hash) => Math.max(1, Math.min(totalSlides, Number(hash.slice(1))))
+  const parseSlideNumberFromHash = (hash) => parseIntInRange(1, totalSlides, hash.slice(1))
 
   const hideSlide = (idx) => {
     document.querySelectorAll("body > ." + slideClassName)[idx].classList.remove(slideShownClassName)
