@@ -1,13 +1,17 @@
+const replaceLocationHash = (newHash) => {
+  const url = new URL(document.location.href)
+  url.hash = newHash
+  history.replaceState(null, "", url.href)
+}
+
 export const installNavigation = (slideClassName) => {
   const slideShownClassName = slideClassName + "--shown"
 
-  let totalSlides = document.querySelectorAll("body > ." + slideClassName).length
+  const totalSlides = document.querySelectorAll("body > ." + slideClassName).length
+
+  const minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
   const parseSlideNumberFromHash = (hash) => Math.max(1, Math.min(totalSlides, Number(hash.slice(1))))
-
-  let currentSlideIdx = parseSlideNumberFromHash(document.location.hash) - 1
-  let touchStartXY = null
-  let minHorizontalSwipeDelta = Math.max(1, document.documentElement.clientWidth * 0.01)
 
   const hideSlide = (idx) => {
     document.querySelectorAll("body > ." + slideClassName)[idx].classList.remove(slideShownClassName)
@@ -15,41 +19,49 @@ export const installNavigation = (slideClassName) => {
 
   const showSlide = (idx) => {
     document.querySelectorAll("body > ." + slideClassName)[idx].classList.add(slideShownClassName)
-    document.location.hash = "#" + (idx + 1)
   }
+
+  const startingSlideNum = parseSlideNumberFromHash(document.location.hash)
+
+  const correctStartingHash = "#" + startingSlideNum
+
+  if (document.location.hash !== correctStartingHash) {
+    replaceLocationHash(correctStartingHash)
+  }
+
+  let currentSlideIdx = startingSlideNum - 1
 
   showSlide(currentSlideIdx)
 
-  const showNextSlide = () => {
+  const changeSlideTo = (idx) => {
+    hideSlide(currentSlideIdx)
+    currentSlideIdx = idx
+    showSlide(currentSlideIdx)
+    document.location.hash = "#" + (idx + 1)
+  }
+
+  const changeToNextSlide = () => {
     if (currentSlideIdx < totalSlides - 1) {
-      hideSlide(currentSlideIdx)
-      currentSlideIdx += 1
-      showSlide(currentSlideIdx)
+      changeSlideTo(currentSlideIdx + 1)
     }
   }
 
-  const showPreviousSlide = () => {
+  const changeToPreviousSlide = () => {
     if (currentSlideIdx > 0) {
-      hideSlide(currentSlideIdx)
-      currentSlideIdx -= 1
-      showSlide(currentSlideIdx)
+      changeSlideTo(currentSlideIdx - 1)
     }
   }
 
-  const showFirstSlide = () => {
+  const changeToFirstSlide = () => {
     if (currentSlideIdx !== 0) {
-      hideSlide(currentSlideIdx)
-      currentSlideIdx = 0
-      showSlide(currentSlideIdx)
+      changeSlideTo(0)
     }
   }
 
-  const showLastSlide = () => {
+  const changeToLastSlide = () => {
     let lastSlide = totalSlides - 1
     if (currentSlideIdx !== lastSlide) {
-      hideSlide(currentSlideIdx)
-      currentSlideIdx = lastSlide
-      showSlide(currentSlideIdx)
+      changeSlideTo(lastSlide)
     }
   }
 
@@ -67,19 +79,19 @@ export const installNavigation = (slideClassName) => {
     switch (e.key) {
       case "ArrowRight":
         e.preventDefault()
-        showNextSlide()
+        changeToNextSlide()
         break
       case "ArrowLeft":
         e.preventDefault()
-        showPreviousSlide()
+        changeToPreviousSlide()
         break
       case "Home":
         e.preventDefault()
-        showFirstSlide()
+        changeToFirstSlide()
         break
       case "End":
         e.preventDefault()
-        showLastSlide()
+        changeToLastSlide()
         break
       case "F":
         e.preventDefault()
@@ -92,6 +104,8 @@ export const installNavigation = (slideClassName) => {
     const touch = e.changedTouches[0]
     return [touch.clientX, touch.clientY]
   }
+
+  let touchStartXY = null
 
   const onTouchStart = (e) => {
     touchStartXY = getTouchXY(e)
@@ -107,9 +121,9 @@ export const installNavigation = (slideClassName) => {
 
       if (absDx > absDy && absDx > minHorizontalSwipeDelta) {
         if (dx > 0) {
-          showPreviousSlide()
+          changeToPreviousSlide()
         } else {
-          showNextSlide()
+          changeToNextSlide()
         }
       }
 
@@ -133,15 +147,11 @@ export const installNavigation = (slideClassName) => {
     const givenSlideIdx = givenSlideNum - 1
 
     if (givenHash !== correctHash) {
-      const url = new URL(document.location.href)
-      url.hash = correctHash
-      history.replaceState(null, "", url.href)
+      replaceLocationHash(correctHash)
     }
 
     if (givenSlideIdx !== currentSlideIdx) {
-      hideSlide(currentSlideIdx)
-      currentSlideIdx = givenSlideIdx
-      showSlide(currentSlideIdx)
+      changeSlideTo(givenSlideIdx)
     }
   }
 

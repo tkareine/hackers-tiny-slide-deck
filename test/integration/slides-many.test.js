@@ -16,7 +16,7 @@ const beShown = (el) => {
   expect(el).to.have.class("htsd-slide--shown")
 }
 
-context("Slides, many", () => {
+context("slides-many, opening the page", () => {
   beforeEach(() => {
     cy.visit("/slides-many.html")
     cy.get("body.htsd--installed")
@@ -148,7 +148,7 @@ context("Slides, many", () => {
   })
 })
 
-context("Slides, many, opening with specific slide", () => {
+context("slides-many, opening with specific slide", () => {
   it("shows slide #2", () => {
     cy.visit("/slides-many.html#2")
     cy.location("hash").should(equal("#2"))
