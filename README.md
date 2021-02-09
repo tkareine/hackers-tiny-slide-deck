@@ -50,7 +50,7 @@ the converted [html][example.html].
   headers.
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
-* Tiny, currently 11.4 KiB in size (bundled, minified, not compressed).
+* Tiny, currently 11.6 KiB in size (bundled, minified, not compressed).
 * Printing the html document is unaffected; CSS styles are for screen
   media only.
 * Might be one of the fastest ways to prepare a slide deck!
@@ -179,8 +179,7 @@ See the end of [example.md] to see how to highlight code with Prism.js.
 ### Install HTSD manually
 
 By default, loading `htsd.min.js` with the `<script>` tag automatically
-installs the `<div>` tags for wrapping content into slides and
-navigation shortcuts. If you want to install them manually, use
+installs all features. If you want to install features manually, use the
 `data-manual` attribute in the `<script>` tag. For example:
 
 ``` html
@@ -191,16 +190,26 @@ HTSD provides the following object in `window`:
 
 ``` javascript
 window.htsd = {
-  // calls `installSlides`, `installNavigation`, and `markInstalled`
+  // calls, in order:
+  //
+  // 1. installStyles
+  // 2. installSlides
+  // 3. installNavigation
+  // 4. markInstalled
   installAll: () => undefined,
 
-  // makes keyboard shortcuts and swipe gestures available
-  installNavigation: () => undefined,
+  // apply CSS styles by injecting a <style> tag into <head>
+  installStyles: () => undefined,
 
-  // wraps content into `<div class="htsd-slide">` tags, to be used as slides
+  // wrap content into <div class="htsd-slide"> tags, to be used as slides
   installSlides: () => undefined,
 
-  // adds `htsd--installed` class to the `<body>` tag
+  // 1. enable handling the hash part of browser location
+  // 2. show the selected slide
+  // 3. make keyboard shortcuts and swipe gestures available
+  installNavigation: () => undefined,
+
+  // add `htsd--installed` class to the <body> tag
   markInstalled: () => undefined,
 
   // contains HTSD version number
@@ -213,6 +222,10 @@ Now, you can call `installAll` manually:
 ``` html
 <script type="text/javascript">htsd.installAll()</script>
 ```
+
+Calling the `install*` or `markInstalled` functions more than once leads
+to undefined behavior. The implementation is simpler without attempting
+to handle the complexities in different call combinations.
 
 ## License
 

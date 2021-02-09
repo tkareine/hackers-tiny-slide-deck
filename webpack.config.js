@@ -53,12 +53,12 @@ module.exports = {
         loader: "babel-loader",
       },
       {
-        test: /\.css$/,
+        test: /\.lazy\.css$/,
         use: [
           {
             loader: "style-loader",
             options: {
-              injectType: "styleTag",
+              injectType: "lazyStyleTag",
             },
           },
           {
