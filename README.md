@@ -198,19 +198,20 @@ window.htsd = {
   // 4. markInstalled
   installAll: () => undefined,
 
-  // apply CSS styles by injecting a <style> tag into <head>
+  // apply CSS styles by injecting a <style> tag into <head>;
+  // this will make <body> invisible (the document goes blank)
   installStyles: () => undefined,
 
   // wrap content into <div class="htsd-slide"> tags, to be used as slides
   installSlides: () => undefined,
 
   // 1. enable handling the hash part of browser location
-  // 2. show the selected slide
+  // 2. show the selected slide (requires <body> to be visible, see `markInstalled`)
   // 3. make keyboard shortcuts and swipe gestures available
   installNavigation: () => undefined,
 
-  // add `htsd--installed` class to the <body> tag
-  markInstalled: () => undefined,
+  // add `htsd--installed` class to the <body> tag, make <body> visible
+  markInstalled: () => undefined,a
 
   // contains HTSD version number
   version: string
