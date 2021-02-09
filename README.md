@@ -211,7 +211,7 @@ window.htsd = {
   installNavigation: () => undefined,
 
   // add `htsd--installed` class to the <body> tag, make <body> visible
-  markInstalled: () => undefined,a
+  markInstalled: () => undefined
 
   // contains HTSD version number
   version: string
