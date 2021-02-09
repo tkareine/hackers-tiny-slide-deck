@@ -18,7 +18,7 @@ const beShown = (el) => {
 
 context("slides-many, opening the page", () => {
   beforeEach(() => {
-    cy.visit("/slides-many.html")
+    cy.visit("/test/slides-many.html")
     cy.get("body.htsd--installed")
   })
 
@@ -150,20 +150,20 @@ context("slides-many, opening the page", () => {
 
 context("slides-many, opening with specific slide", () => {
   it("shows slide #2", () => {
-    cy.visit("/slides-many.html#2")
+    cy.visit("/test/slides-many.html#2")
     cy.location("hash").should(equal("#2"))
     cy.get(".htsd-slide:nth-of-type(2)").should(beShown)
   })
   ;["0", "-1", "", "asdf"].forEach((input) => {
     it(`shows the first slide when entering #${input}`, () => {
-      cy.visit("/slides-many.html#" + input)
+      cy.visit("/test/slides-many.html#" + input)
       cy.location("hash").should(equal("#1"))
       cy.get(".htsd-slide:nth-of-type(1)").should(beShown)
     })
   })
 
   it("shows the last slide when entering #6 (one past last slide)", () => {
-    cy.visit("/slides-many.html#6")
+    cy.visit("/test/slides-many.html#6")
     cy.location("hash").should(equal("#5"))
     cy.get(".htsd-slide:nth-of-type(5)").should(beShown)
   })
