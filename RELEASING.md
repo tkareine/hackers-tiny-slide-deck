@@ -61,4 +61,13 @@
     npm publish
     ```
 
+10. Bump development version:
+
+    ``` shell
+    $EDITOR package.json
+    ```
+
+    Increase the patch version and add the `-dev` label. For example:
+    `0.3.2-dev`.
+
 [CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions?workflow=CI
