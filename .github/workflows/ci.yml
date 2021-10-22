@@ -6,6 +6,11 @@ jobs:
   build_and_test:
     name: Build and test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - "14"
+          - "16"
     env:
       # Reduce ANSI terminal output for webpack and Cypress
       CI: 1
@@ -18,21 +23,21 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
-      - name: Cache ~/.npm
+          node-version: ${{ matrix.node }}
+      - name: Cache ~/.npm for Node ${{ matrix.node }}
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-
-      - name: Cache ~/.cache/Cypress
+            ${{ runner.os }}-node-${{ matrix.node }}-npm-
+      - name: Cache ~/.cache/Cypress for Node ${{ matrix.node }}
         uses: actions/cache@v2
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ matrix.node }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-cypress-
+            ${{ runner.os }}-node-${{ matrix.node }}-cypress-
       - name: Install npm dependencies and build HTSD
         run: npm ci
       - name: Verify Cypress installation
