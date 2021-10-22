@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+### Changed
+
+* Upgrade dependencies. No functional changes.
+
 ## [v0.3.0] - 2021-02-08
 
 ### Added

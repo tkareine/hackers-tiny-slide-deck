@@ -50,7 +50,7 @@ the converted [html][example.html].
   headers.
 * Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
-* Tiny, currently 11.6 KiB in size (bundled, minified, not compressed).
+* Tiny, currently 12 KiB in size (bundled, minified, not compressed).
 * Printing the html document is unaffected; CSS styles are for screen
   media only.
 * Might be one of the fastest ways to prepare a slide deck!
