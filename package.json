@@ -52,7 +52,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^6.4.0",
     "cypress": "^8.6.0",
-    "marked": "^3.0.7",
+    "marked": "^4.0.10",
     "prettier": "^2.1.2",
     "start-server-and-test": "^1.11.5",
     "style-loader": "^3.3.1",
