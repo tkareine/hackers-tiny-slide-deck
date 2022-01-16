@@ -37,7 +37,7 @@ module.exports = {
       }
       return "warning"
     })(),
-    maxAssetSize: 12 * 1024,
+    maxAssetSize: 12.1 * 1024,
   },
   optimization: {
     minimize: true,
