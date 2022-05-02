@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:8080",
+  "downloadsFolder": "test/downloads",
   "fixturesFolder": "test/fixtures",
   "integrationFolder": "test/integration",
   "pluginsFile": false,

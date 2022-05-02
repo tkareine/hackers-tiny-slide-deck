@@ -27,7 +27,7 @@
     "node": ">= 14"
   },
   "scripts": {
-    "clean": "rm -fr build hackers-tiny-slide-deck-*.tgz test/screenshots test/videos",
+    "clean": "rm -fr build hackers-tiny-slide-deck-*.tgz test/downloads test/screenshots test/videos",
     "clobber": "npm run clean && rm -fr node_modules",
     "example:build": "mkdir -p build && marked --gfm -i example.md > build/example.html",
     "example:mkBranch": "npm run clean && NODE_ENV=production npm run lib:build && npm run example:build && git add -f build && git update-ref refs/heads/gh-pages \"$(git commit-tree -m 'Generated example' \"$(git write-tree --prefix=build/)\")\" && git reset",
