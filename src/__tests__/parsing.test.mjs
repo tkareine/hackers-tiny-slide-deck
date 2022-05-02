@@ -10,7 +10,7 @@ const testParseIntInRange = (() => {
       t.is(parseIntInRange(min, max, inputStr), expected)
     },
     title: (providedTitle = "", inputStr, expected, min = defaultMin, max = defaultMax) =>
-      `${providedTitle} parseIntIntInRange("${inputStr}", ${min}, ${max}) = ${expected}`.trim(),
+      `${providedTitle} parseIntInRange("${inputStr}", ${min}, ${max}) = ${expected}`.trim(),
   })
 })()
 
