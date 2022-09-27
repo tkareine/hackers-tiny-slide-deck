@@ -51,7 +51,7 @@
     "ava": "^4.0.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^6.4.0",
-    "cypress": "^9.2.1",
+    "cypress": "^10.9.0",
     "marked": "^4.0.10",
     "prettier": "^2.1.2",
     "start-server-and-test": "^1.11.5",
