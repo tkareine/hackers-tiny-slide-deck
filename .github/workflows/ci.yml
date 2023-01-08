@@ -11,28 +11,29 @@ jobs:
         node:
           - "14"
           - "16"
+          - "18"
     env:
       # Reduce ANSI terminal output for webpack and Cypress
       CI: 1
       NO_COLOR: 1
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Setup node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: Cache ~/.npm for Node ${{ matrix.node }}
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node }}-npm-
       - name: Cache ~/.cache/Cypress for Node ${{ matrix.node }}
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-node-${{ matrix.node }}-cypress-${{ hashFiles('**/package-lock.json') }}
