@@ -12,7 +12,7 @@
 
     ``` shell
     npm run example:build && npm run lib:serve
-    open http://localhost:8080/example.html
+    open http://127.0.0.1:8080/example.html
     ```
 
 4. Check that the difference of the current production build
