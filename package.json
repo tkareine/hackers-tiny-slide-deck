@@ -20,7 +20,8 @@
     "LICENSE.txt",
     "README.md",
     "build/htsd.min.js",
-    "build/htsd.min.js.map"
+    "build/htsd.min.js.map",
+    "package.json"
   ],
   "browser": "build/htsd.min.js",
   "engines": {
