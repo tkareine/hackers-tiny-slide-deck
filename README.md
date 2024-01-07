@@ -232,7 +232,7 @@ to handle the complexities in different call combinations.
 
 MIT. See [LICENSE.txt].
 
-[HTSD-CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions?workflow=CI
+[HTSD-CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions/workflows/ci.yml
 [HTSD-npm-package]: https://www.npmjs.com/package/hackers-tiny-slide-deck
 [LICENSE.txt]: https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/LICENSE.txt
 [Prism.js]: https://prismjs.com/

@@ -44,10 +44,13 @@
     ``` shell
     git diff
     git add -p
-    git commit -m 'Release version $version'
+    git commit -m 'Release v$version'
     git tag v$version
     git push origin master v$version
     ```
+
+   Make sure the version string in `package.json` and git tag name
+   match. Note that the git tag name uses the `v` prefix.
 
 8. Update and publish example:
 
@@ -55,11 +58,7 @@
     npm run example:publish
     ```
 
-9. Publish npm package:
-
-    ``` shell
-    npm publish
-    ```
+9. The [CI] publishes npm package automatically
 
 10. Bump development version:
 
@@ -70,4 +69,4 @@
     Increase the patch version and add the `-dev` label. For example:
     `0.3.2-dev`.
 
-[CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions?workflow=CI
+[CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions/workflows/ci.yml

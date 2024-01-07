@@ -13,14 +13,15 @@
   "bugs": "https://github.com/tkareine/hackers-tiny-slide-deck/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tkareine/hackers-tiny-slide-deck.git"
+    "url": "git+https://github.com/tkareine/hackers-tiny-slide-deck.git"
   },
   "files": [
     "CHANGELOG.md",
     "LICENSE.txt",
     "README.md",
     "build/htsd.min.js",
-    "build/htsd.min.js.map"
+    "build/htsd.min.js.map",
+    "package.json"
   ],
   "browser": "build/htsd.min.js",
   "engines": {
@@ -37,7 +38,7 @@
     "lib:diffBuild": "bash -c 'diff -u -- <(git show origin/gh-pages:htsd.min.js | prettier --parser babel) <(cat build/htsd.min.js | prettier --parser babel)'",
     "lib:serve": "mkdir -p build && webpack serve",
     "lint": "prettier --check '*.{mjs,js}' '{src,test}/**/*.{mjs,js}'",
-    "prepublishOnly": "npm test && NODE_ENV=production npm run lib:build",
+    "prepack": "NODE_ENV=production npm run lib:build",
     "test": "npm run lint && npm run test:unit && npm run test:integration:ci && NODE_ENV=production npm run lib:build",
     "test:integration:build": "mkdir -p build/test && for f in test/fixture/*.md; do marked -i \"$f\" > \"build/test/$(basename -s .md \"$f\").html\"; done",
     "test:integration:ci": "npm run test:integration:build && NODE_ENV=production start-server-and-test lib:serve 'http-get://127.0.0.1:8080' test:integration:run",

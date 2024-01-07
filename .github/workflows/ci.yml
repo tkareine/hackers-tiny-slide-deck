@@ -2,9 +2,12 @@ name: CI
 
 on: [push]
 
+env:
+  NODE_VERSION_FOR_PUBLISH: "20"
+
 jobs:
-  build_and_test:
-    name: Build and test
+  test:
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,7 +17,6 @@ jobs:
           - "20"
     env:
       # Reduce ANSI terminal output for webpack and Cypress
-      CI: 1
       NO_COLOR: 1
     steps:
       - name: Checkout git repository
@@ -39,9 +41,47 @@ jobs:
           key: ${{ runner.os }}-node-${{ matrix.node }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node }}-cypress-
-      - name: Install npm dependencies and build HTSD
+      - name: Install npm dependencies
         run: npm ci
       - name: Verify Cypress installation
         run: ./node_modules/.bin/cypress verify
       - name: Run tests
         run: npm test
+
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    if: startsWith(github.ref_name, 'v')
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION_FOR_PUBLISH }}
+          registry-url: https://registry.npmjs.org
+      - name: Cache ~/.npm for Node ${{ env.NODE_VERSION_FOR_PUBLISH }}
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION_FOR_PUBLISH }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ env.NODE_VERSION_FOR_PUBLISH }}-npm-
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Check git tag and npm package version match
+        run: |
+          npm_package_version=$(node --eval 'console.log(require("./package.json").version)')
+          git_tag_version="${GITHUB_REF_NAME:1}"
+          if [[ "$npm_package_version" != "$git_tag_version" ]]; then
+              echo "Fail; npm package version and git tag differ: npm_package_version=$npm_package_version git_tag_version=$git_tag_version" >&2
+              false
+          fi
+      - name: Publish npm package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
