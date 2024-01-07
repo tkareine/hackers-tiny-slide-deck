@@ -43,8 +43,7 @@
 
     ``` shell
     git diff
-    git add -p
-    git commit -m 'Release v$version'
+    git commit --all --message="Release v$version"
     git tag v$version
     git push origin master v$version
     ```
@@ -60,8 +59,22 @@
     $EDITOR package.json
     ```
 
-    Increase the patch version and add the `-dev` label. For example:
-    `0.3.2-dev`.
+   Increase the patch version and add the `-dev` label. For example:
+   `0.3.2-dev`.
+
+   Commit and push:
+
+    ``` shell
+    git diff
+    git commit --all --message='Bump development version'
+    git push origin master
+    ```
+
+9. Update and publish example:
+
+    ``` shell
+    npm run example:publish
+    ```
 
 9. Update and publish example:
 
