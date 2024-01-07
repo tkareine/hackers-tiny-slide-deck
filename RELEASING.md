@@ -52,15 +52,9 @@
    Make sure the version string in `package.json` and git tag name
    match. Note that the git tag name uses the `v` prefix.
 
-8. Update and publish example:
+   After pushing, the [CI] publishes npm package automatically.
 
-    ``` shell
-    npm run example:publish
-    ```
-
-9. The [CI] publishes npm package automatically
-
-10. Bump development version:
+8. Bump development version:
 
     ``` shell
     $EDITOR package.json
@@ -68,5 +62,11 @@
 
     Increase the patch version and add the `-dev` label. For example:
     `0.3.2-dev`.
+
+9. Update and publish example:
+
+   ``` shell
+   npm run example:publish
+   ```
 
 [CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions/workflows/ci.yml
