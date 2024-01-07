@@ -1,6 +1,6 @@
 {
   "name": "hackers-tiny-slide-deck",
-  "version": "0.3.2-dev",
+  "version": "0.3.2-a1",
   "license": "MIT",
   "description": "Turn a Markdown document into a slide deck quickly.",
   "author": "Tuomas Kareinen <tkareine@gmail.com>",
