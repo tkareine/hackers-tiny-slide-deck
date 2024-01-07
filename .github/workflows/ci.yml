@@ -72,7 +72,7 @@ jobs:
             ${{ runner.os }}-node-${{ env.NODE_VERSION_FOR_PUBLISH }}-npm-
       - name: Install npm dependencies
         run: npm ci
-      - name: Check git tag and npm package version match
+      - name: Check that git tag and npm package version match
         run: |
           npm_package_version=$(node --eval 'console.log(require("./package.json").version)')
           git_tag_version="${GITHUB_REF_NAME:1}"
