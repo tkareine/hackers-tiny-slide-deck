@@ -1,6 +1,7 @@
 /*.tgz
 /build/
 /node_modules/
+/package/
 /test/downloads/
 /test/screenshots/
 /test/videos/
