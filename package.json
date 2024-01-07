@@ -24,17 +24,17 @@
   ],
   "browser": "build/htsd.min.js",
   "engines": {
-    "node": ">= 14"
+    "node": ">= 18"
   },
   "scripts": {
     "clean": "rm -fr build hackers-tiny-slide-deck-*.tgz test/downloads test/screenshots test/videos",
     "clobber": "npm run clean && rm -fr node_modules",
-    "example:build": "mkdir -p build && marked --gfm -i example.md > build/example.html",
+    "example:build": "mkdir -p build && marked --gfm --input example.md > build/example.html",
     "example:mkBranch": "npm run clean && NODE_ENV=production npm run lib:build && npm run example:build && git add -f build && git update-ref refs/heads/gh-pages \"$(git commit-tree -m 'Generated example' \"$(git write-tree --prefix=build/)\")\" && git reset",
     "example:pushBranch": "git push -f origin gh-pages",
     "example:publish": "npm run example:mkBranch && npm run example:pushBranch",
     "lib:build": "mkdir -p build && webpack",
-    "lib:diffBuild": "bash -c 'diff -u -- <(git show origin/gh-pages:htsd.min.js | prettier --parser babel) <(prettier --parser babel build/htsd.min.js)'",
+    "lib:diffBuild": "bash -c 'diff -u -- <(git show origin/gh-pages:htsd.min.js | prettier --parser babel) <(cat build/htsd.min.js | prettier --parser babel)'",
     "lib:serve": "mkdir -p build && webpack serve",
     "lint": "prettier --check '*.{mjs,js}' '{src,test}/**/*.{mjs,js}'",
     "prepublishOnly": "npm test && NODE_ENV=production npm run lib:build",
@@ -48,12 +48,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.0",
     "@babel/preset-env": "^7.12.0",
-    "ava": "^5.1.0",
+    "ava": "^6.0.1",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.4.0",
-    "cypress": "^12.3.0",
-    "marked": "^4.0.10",
-    "prettier": "^2.1.2",
+    "cypress": "^13.6.2",
+    "marked": "^11.1.1",
+    "prettier": "^3.1.1",
     "start-server-and-test": "^2.0.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.0.0",

@@ -11,17 +11,18 @@ jobs:
         node:
           - "16"
           - "18"
+          - "20"
     env:
       # Reduce ANSI terminal output for webpack and Cypress
       CI: 1
       NO_COLOR: 1
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
       - name: Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       - name: Cache ~/.npm for Node ${{ matrix.node }}

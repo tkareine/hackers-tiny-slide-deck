@@ -25,7 +25,7 @@ context("slides-many, opening the page", () => {
   it("wraps content into slides", () => {
     cy.get(".htsd-slide").should((el) => {
       const tree = Array.from(el).map((e) =>
-        Array.from(Cypress.$(e).children()).map((e) => [e.tagName.toLowerCase(), e.innerHTML])
+        Array.from(Cypress.$(e).children()).map((e) => [e.tagName.toLowerCase(), e.innerHTML]),
       )
 
       expect(tree).to.deep.equal([

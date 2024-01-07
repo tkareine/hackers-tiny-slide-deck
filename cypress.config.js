@@ -9,5 +9,7 @@ module.exports = defineConfig({
   downloadsFolder: "test/downloads",
   fixturesFolder: "test/fixtures",
   screenshotsFolder: "test/screenshots",
+  video: false,
+  videoCompression: true,
   videosFolder: "test/videos",
 })
