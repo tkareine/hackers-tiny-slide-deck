@@ -76,10 +76,10 @@
     npm run example:publish
     ```
 
-9. Update and publish example:
+10. Update and publish example:
 
-   ``` shell
-   npm run example:publish
-   ```
+    ``` shell
+    npm run example:publish
+    ```
 
 [CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions/workflows/ci.yml
