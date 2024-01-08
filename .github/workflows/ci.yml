@@ -1,6 +1,7 @@
 name: CI
 
-on: [push]
+on:
+  - push
 
 env:
   NODE_VERSION_FOR_PUBLISH: "20"
@@ -52,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - test
-    if: startsWith(github.ref_name, 'v')
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     steps:
       - name: Checkout git repository
         uses: actions/checkout@v4
@@ -77,7 +78,7 @@ jobs:
           npm_package_version=$(node --eval 'console.log(require("./package.json").version)')
           git_tag_version="${GITHUB_REF_NAME:1}"
           if [[ "$npm_package_version" != "$git_tag_version" ]]; then
-              echo "Fail; npm package version and git tag differ: npm_package_version=$npm_package_version git_tag_version=$git_tag_version" >&2
+              echo "::error::npm package version and git tag differ: npm_package_version=$npm_package_version git_tag_version=$git_tag_version" >&2
               false
           fi
       - name: Publish npm package
