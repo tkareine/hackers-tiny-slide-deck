@@ -15,6 +15,7 @@ jobs:
         node:
           - "18"
           - "20"
+          - "22"
     env:
       # Reduce ANSI terminal output for webpack and Cypress
       NO_COLOR: 1
