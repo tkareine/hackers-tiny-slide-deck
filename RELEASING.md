@@ -76,10 +76,4 @@
     npm run example:publish
     ```
 
-10. Update and publish example:
-
-    ``` shell
-    npm run example:publish
-    ```
-
 [CI]: https://github.com/tkareine/hackers-tiny-slide-deck/actions/workflows/ci.yml
