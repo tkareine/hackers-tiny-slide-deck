@@ -28,14 +28,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Cache ~/.npm for Node ${{ matrix.node }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node }}-npm-
       - name: Cache ~/.cache/Cypress for Node ${{ matrix.node }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-node-${{ matrix.node }}-cypress-${{ hashFiles('**/package-lock.json') }}
@@ -65,7 +65,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION_FOR_PUBLISH }}
           registry-url: https://registry.npmjs.org
       - name: Cache ~/.npm for Node ${{ env.NODE_VERSION_FOR_PUBLISH }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION_FOR_PUBLISH }}-npm-${{ hashFiles('**/package-lock.json') }}
