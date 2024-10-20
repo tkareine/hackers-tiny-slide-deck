@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [v0.4.2] - 2024-10-20
+
+### Changed
+
+* Update dependencies. No functional changes.
+
 ## [v0.4.1] - 2024-05-25
 
 ### Changed
@@ -72,7 +78,8 @@ This project adheres to [Semantic Versioning].
 * First release.
 
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.4.2...HEAD
+[v0.4.2]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.4.1...v0.4.2
 [v0.4.1]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.3.1...v0.4.0
 [v0.3.1]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.3.0...v0.3.1
