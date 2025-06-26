@@ -1,7 +1,7 @@
 # Hacker's Tiny Slide Deck (HTSD)
 
 [![npm version](https://badge.fury.io/js/hackers-tiny-slide-deck.svg)][HTSD-npm-package]
-[![CI](https://github.com/tkareine/hackers-tiny-slide-deck/workflows/CI/badge.svg)][HTSD-CI]
+[![CI](https://github.com/tkareine/hackers-tiny-slide-deck/actions/workflows/ci.yml/badge.svg)][HTSD-CI]
 
 Turn a Markdown document into a slide deck, in two steps:
 
