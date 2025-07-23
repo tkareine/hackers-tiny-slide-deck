@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [v0.4.3] - 2025-07-23
+
+### Changed
+
+* Update dependencies. No functional changes.
+
 ## [v0.4.2] - 2024-10-20
 
 ### Changed
