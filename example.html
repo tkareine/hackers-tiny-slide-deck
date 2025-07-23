@@ -1,0 +1,144 @@
+<h1>Hacker&#39;s Tiny Slide Deck</h1>
+<h2>(Or HTSD in short)</h2>
+<h3>A feature demonstration</h3>
+<p>Press ➡️ (right arrow) or swipe left to go to the next slide.</p>
+<p><em>9th Dec 2019</em></p>
+<hr>
+<h2>Keyboard shortcuts</h2>
+<p>⬅️ (left arrow) or <em>swipe right gesture</em> to show the previous slide</p>
+<p>➡️ (right arrow) or <em>swipe left gesture</em> to show the next slide</p>
+<p><code>Home</code> to show the first slide</p>
+<p><code>End</code> to show the last slide</p>
+<p><code>Shift+F</code> to toggle fullscreen</p>
+<hr>
+<h2>Code snippet</h2>
+<p>An implementation in JavaScript to calculate the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>, to
+demonstrate syntax highlighting with <a href="https://prismjs.com/">Prism.js</a>:</p>
+<pre><code class="language-javascript">/* iterative implementation */
+function fibonacci(n) {
+  let a = 1
+  let b = 0
+  let temp
+
+  while (n &gt;= 0) {
+    temp = a
+    a = a + b
+    b = temp
+    n -= 1
+  }
+
+  return b
+}
+</code></pre>
+<p>(You might have to scroll to reach here, and that&#39;s intentional.)</p>
+<hr>
+<h2>Usage</h2>
+<ol>
+<li><p>Prepare a Markdown document, like the <a href="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md">example</a>
+you&#39;re looking at currently. Separate content between intended slides
+with <code>---</code> (three dashes, these become as <code>&lt;hr&gt;</code> tags in the html
+conversion).</p>
+</li>
+<li><p>Append a <code>&lt;script&gt;</code> tag linking the HTSD JavaScript bundle to the end
+of the Markdown document.</p>
+</li>
+<li><p>Turn the Markdown document into html using a general-purpose
+markdown-to-html converter (such as <a href="https://github.com/markedjs/marked">marked</a>).</p>
+</li>
+</ol>
+<hr>
+<h2>How it works</h2>
+<p>The <code>&lt;script&gt;</code> tag makes the browser to load the HTSD JavaScript bundle,
+which transforms the html document into a slideshow. The transformation
+happens in-browser, with these steps:</p>
+<ol>
+<li><p>The script injects an inline CSS <code>&lt;style&gt;</code> tag into the <code>&lt;head&gt;</code> of
+the document. The styles are used to display <code>&lt;div class=&quot;htsd-slide&quot;&gt;</code> tags (created next) as slides.</p>
+</li>
+<li><p>The script looks for <code>&lt;hr&gt;</code> tags that are direct childs of the
+<code>&lt;body&gt;</code> tag, and wraps the contents between the <code>&lt;hr&gt;</code>s into <code>&lt;div class=&quot;htsd-slide&quot;&gt;</code> tags.</p>
+</li>
+<li><p>Then, the script installs means for the user to navigate the
+slides. This includes keyboard shortcuts, gestures, and keeping the
+hash in the browser location in sync with he current slide.</p>
+</li>
+</ol>
+<hr>
+<h2>Styling customization</h2>
+<p>HTDS comes with a selection of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS custom properties</a> (variables) that
+affect slide looks globally. You may override their values by using a
+<code>&lt;style&gt;</code> at the end of your Markdown document.</p>
+<p>For example, to set the font family for your slide deck:</p>
+<pre><code class="language-html">&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
+:root {
+  --htsd-sans-font-family: &#39;Roboto&#39;, sans-serif;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2>Styling customization, code snippets</h2>
+<p>Highlight code with <a href="https://prismjs.com/">Prism.js</a> by appending the following line to the
+end of the Markdown document (as in the <a href="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md">example</a> you&#39;re
+looking at):</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;
+        src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js&quot;&gt;
+&lt;/script&gt;
+</code></pre>
+<p>We use the following CSS to make the font-size in the code snippets of
+this slide smaller:</p>
+<pre><code class="language-css">/* select the html code block in the 7th slide */
+.htsd-slide:nth-of-type(7) pre code {
+  font-size: 0.6rem;
+}
+</code></pre>
+<p>…but instead of relying on slide numbers in building CSS selectors,
+there&#39;s a better way (see the next slide).</p>
+<hr>
+<h2>Styling customization, generated ids</h2>
+<p>HTSD generates id attributes for each slide from the highest header
+level contained in the slide. This makes styling selected slides
+easier.</p>
+<p>Let&#39;s paint the <code>&lt;div&gt;</code> below red:</p>
+<pre><code class="language-css">#htsd-slide--styling-customization--generated-ids .red-block {
+  margin-top: 1em;
+  width: 5em;
+  height: 2em;
+  background-color: red;
+}
+</code></pre>
+<div class="red-block"></div>
+
+<hr>
+<h2>Other customizations</h2>
+<p>See the bottom of the <a href="https://raw.githubusercontent.com/tkareine/hackers-tiny-slide-deck/master/example.md">Markdown source</a> of this slide deck
+and the <a href="https://github.com/tkareine/hackers-tiny-slide-deck/blob/master/README.md">README</a>.</p>
+<p>Being tiny, you can easily hack the implementation for your own needs!</p>
+<hr>
+<h1>End</h1>
+<p>Thank you!</p>
+<p>The code is available at GitHub:<br>
+<a href="https://github.com/tkareine/hackers-tiny-slide-deck/">hackers-tiny-slide-deck</a></p>
+<style type="text/css" media="screen">
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Mono:400,700);
+:root {
+  --htsd-sans-font-family: 'Roboto', sans-serif;
+  --htsd-mono-font-family: 'Roboto Mono', monospace;
+}
+#htsd-slide--how-it-works li {
+  font-size: 0.8rem;
+}
+#htsd-slide--styling-customization pre code,
+.htsd-slide:nth-of-type(7) pre code {
+  font-size: 0.6rem;
+}
+#htsd-slide--styling-customization--generated-ids .red-block {
+  margin-top: 1em;
+  width: 5em;
+  height: 2em;
+  background-color: red;
+}
+</style>
+<script type="text/javascript" src="htsd.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>
+
