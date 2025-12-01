@@ -24,7 +24,7 @@
     "example:pushBranch": "git push -f origin gh-pages",
     "example:publish": "npm run example:mkBranch && npm run example:pushBranch",
     "lib:build": "mkdir -p build && webpack",
-    "lib:diffBuild": "bash -c 'diff -u -- <(git show origin/gh-pages:htsd.min.js | prettier --parser babel) <(cat build/htsd.min.js | prettier --parser babel)'",
+    "lib:diffBuild": "bash -c 'git diff --no-index -- <(git show origin/gh-pages:htsd.min.js | prettier --parser babel) <(cat build/htsd.min.js | prettier --parser babel)'",
     "lib:serve": "mkdir -p build && webpack serve",
     "lint": "prettier --check '*.{mjs,js}' '{src,test}/**/*.{mjs,js}'",
     "prepack": "NODE_ENV=production npm run lib:build",
