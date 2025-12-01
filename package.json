@@ -14,7 +14,7 @@
   "files": ["CHANGELOG.md", "LICENSE.txt", "README.md", "build/htsd.min.js", "build/htsd.min.js.map", "package.json"],
   "browser": "build/htsd.min.js",
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   },
   "scripts": {
     "clean": "rm -fr build hackers-tiny-slide-deck-*.tgz test/downloads test/screenshots test/videos",
@@ -41,8 +41,8 @@
     "ava": "^6.0.1",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
-    "cypress": "^14.5.2",
-    "marked": "^16.1.1",
+    "cypress": "^15.7.0",
+    "marked": "^17.0.1",
     "prettier": "^3.1.1",
     "start-server-and-test": "^2.0.0",
     "style-loader": "^4.0.0",

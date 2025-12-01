@@ -7,7 +7,7 @@ on:
   - push
 
 env:
-  NODE_VERSION_FOR_PUBLISH: "20"
+  NODE_VERSION_FOR_PUBLISH: "24"
 
 jobs:
   test:
@@ -16,9 +16,9 @@ jobs:
     strategy:
       matrix:
         node:
-          - "18"
           - "20"
           - "22"
+          - "24"
     env:
       # Reduce ANSI terminal output for webpack and Cypress
       NO_COLOR: 1
