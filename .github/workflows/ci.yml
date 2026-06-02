@@ -2,6 +2,7 @@ name: CI
 
 permissions:
   contents: read
+  id-token: write
 
 on:
   - push
@@ -68,13 +69,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION_FOR_PUBLISH }}
           registry-url: https://registry.npmjs.org
-      - name: Cache ~/.npm for Node ${{ env.NODE_VERSION_FOR_PUBLISH }}
-        uses: actions/cache@v5
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ env.NODE_VERSION_FOR_PUBLISH }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ env.NODE_VERSION_FOR_PUBLISH }}-npm-
+          package-manager-cache: false
       - name: Install npm dependencies
         run: npm ci
       - name: Check that git tag and npm package version match
@@ -85,7 +80,6 @@ jobs:
               echo "::error::npm package version and git tag differ: npm_package_version=$npm_package_version git_tag_version=$git_tag_version" >&2
               false
           fi
+      # Use trusted publishing; see https://docs.npmjs.com/trusted-publishers
       - name: Publish npm package
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
