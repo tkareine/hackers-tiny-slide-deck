@@ -16,6 +16,16 @@
   "engines": {
     "node": ">= 22"
   },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "onFail": "error"
+    }
+  },
   "scripts": {
     "clean": "rm -fr build hackers-tiny-slide-deck-*.tgz test/downloads test/screenshots test/videos",
     "clobber": "npm run clean && rm -fr node_modules",
