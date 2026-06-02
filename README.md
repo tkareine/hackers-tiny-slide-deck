@@ -9,8 +9,11 @@ Turn a Markdown document into a slide deck, in two steps:
    of the Markdown document. For example, accessing the bundle from
    [jsDelivr] service:
 
-   ``` html
-   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"></script>
+   ```html
+   <script
+     type="text/javascript"
+     src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"
+   ></script>
    ```
 
    (Replace `VERSION` with the version of this [npm
@@ -18,7 +21,7 @@ Turn a Markdown document into a slide deck, in two steps:
 
 2. Convert the Markdown document into html. For example, using [marked]:
 
-   ``` shell
+   ```shell
    marked -i example.md > example.html
    ```
 
@@ -35,32 +38,32 @@ the converted [html][example.html].
 
 ## Features
 
-* Responsive CSS, with automatically scaling text size.
-* You can still adjust text size with the browser's zoom function.
-* Keyboard shortcuts to change slides:
-  * ⬅️ (left arrow) to show the previous slide
-  * ➡️ (right arrow) to show the next slide
-  * `Home` to show the first slide
-  * `End` to show the last slide
-* Keyboard shortcut to toggle fullscreen, `Shift+F`.
-* Swipe left and right gestures to change slides on mobile browsers.
-* Built for modern browsers (no support for old browsers).
-* Support browser history, remember current slide shown on reload.
-* Easy slide specific CSS styles with id attributes generated from
+- Responsive CSS, with automatically scaling text size.
+- You can still adjust text size with the browser's zoom function.
+- Keyboard shortcuts to change slides:
+  - ⬅️ (left arrow) to show the previous slide
+  - ➡️ (right arrow) to show the next slide
+  - `Home` to show the first slide
+  - `End` to show the last slide
+- Keyboard shortcut to toggle fullscreen, `Shift+F`.
+- Swipe left and right gestures to change slides on mobile browsers.
+- Built for modern browsers (no support for old browsers).
+- Support browser history, remember current slide shown on reload.
+- Easy slide specific CSS styles with id attributes generated from
   headers.
-* Intentionally kept simple to allow easy hacking and customization. If
+- Intentionally kept simple to allow easy hacking and customization. If
   you don't like something, download the source code and change it.
-* Tiny, currently 12 KiB in size (bundled, minified, not compressed).
-* Printing the html document is unaffected; CSS styles are for screen
+- Tiny, currently 12 KiB in size (bundled, minified, not compressed).
+- Printing the html document is unaffected; CSS styles are for screen
   media only.
-* Might be one of the fastest ways to prepare a slide deck!
+- Might be one of the fastest ways to prepare a slide deck!
 
 ## Usage
 
 Prepare a Markdown document, with a `<script>` tag referring
 `htsd.min.js`:
 
-``` markdown
+```markdown
 # Title
 
 I'm the first slide.
@@ -85,7 +88,7 @@ of this [npm package][HTSD-npm-package].)
 
 Convert the `.md` file prepared above to `.html`. Here, using [marked]:
 
-``` shell
+```shell
 marked -i example.md > example.html
 ```
 
@@ -96,13 +99,12 @@ generated from a Markdown document into slides.
 
 ### Horizontal separators (`<hr>`) separate slides
 
-``` markdown
+```markdown
 ## Slide 1
 
 ---
 
 ## Slide 2
-
 ```
 
 The contents of each slide get wrapped in a `<div>` tag, with style
@@ -115,7 +117,7 @@ slides.
 
 ### Modifier class for the highest level header in a slide
 
-``` markdown
+```markdown
 # Title
 
 ## Topic 1
@@ -150,12 +152,12 @@ selectors to customize styles (see [example.md]).
 Use a `<style media="screen">` tag to customize styles. There are custom
 CSS properties to help your tuning needs:
 
-``` css
+```css
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
 
 /* override css custom properties */
 :root {
-  --htsd-sans-font-family: 'Roboto', sans-serif;
+  --htsd-sans-font-family: "Roboto", sans-serif;
   --htsd-slide-bg-color: #f6f6f6;
   --htsd-header-color: #262626;
   --htsd-text-color: #1a1a1a;
@@ -182,13 +184,17 @@ By default, loading `htsd.min.js` with the `<script>` tag automatically
 installs all features. If you want to install features manually, use the
 `data-manual` attribute in the `<script>` tag. For example:
 
-``` html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js" data-manual></script>
+```html
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/hackers-tiny-slide-deck@VERSION/build/htsd.min.js"
+  data-manual
+></script>
 ```
 
 HTSD provides the following object in `window`:
 
-``` javascript
+```javascript
 window.htsd = {
   // calls, in order:
   //
@@ -220,8 +226,10 @@ window.htsd = {
 
 Now, you can call `installAll` manually:
 
-``` html
-<script type="text/javascript">htsd.installAll()</script>
+```html
+<script type="text/javascript">
+  htsd.installAll()
+</script>
 ```
 
 Calling the `install*` or `markInstalled` functions more than once leads

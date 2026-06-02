@@ -10,45 +10,45 @@ This project adheres to [Semantic Versioning].
 
 ### Changed
 
-* Update dependencies. No functional changes.
+- Update dependencies. No functional changes.
 
 ## [v0.4.3] - 2025-07-23
 
 ### Changed
 
-* Update dependencies. No functional changes.
+- Update dependencies. No functional changes.
 
 ## [v0.4.2] - 2024-10-20
 
 ### Changed
 
-* Update dependencies. No functional changes.
+- Update dependencies. No functional changes.
 
 ## [v0.4.1] - 2024-05-25
 
 ### Changed
 
-* Upgrade dependencies. No functional changes.
+- Upgrade dependencies. No functional changes.
 
 ## [v0.4.0] - 2024-01-07
 
 ### Changed
 
-* Upgrade dependencies. No functional changes.
-* **Breaking:** Drop support for Node.js versions below v18.
+- Upgrade dependencies. No functional changes.
+- **Breaking:** Drop support for Node.js versions below v18.
 
 ## [v0.3.1] - 2021-10-22
 
 ### Changed
 
-* Upgrade dependencies. No functional changes.
+- Upgrade dependencies. No functional changes.
 
 ## [v0.3.0] - 2021-02-08
 
 ### Added
 
-* When doing a manual install of HTSD (`<script data-manual
-  src="htsd.min.js">`), don't load styles automatically. Provide
+- When doing a manual install of HTSD (`<script data-manual
+src="htsd.min.js">`), don't load styles automatically. Provide
   `window.htsd.installStyles` function to load styles manually. The
   `window.htsd.installAll` function will call it.
 
@@ -56,40 +56,40 @@ This project adheres to [Semantic Versioning].
 
 ### Added
 
-* Show and apply the current slide shown from the hash part of browser
+- Show and apply the current slide shown from the hash part of browser
   location.
-* Generate id attributes for slides containing headers. This allows
+- Generate id attributes for slides containing headers. This allows
   easier writing of slide specific CSS styles.
 
 ### Changed
 
-* Make code block font-size smaller, have it available as CSS custom
+- Make code block font-size smaller, have it available as CSS custom
   property.
 
 ## [v0.1.3] - 2020-10-15
 
 ### Changed
 
-* Make asset bundle 0.5 KiB smaller by upgrading to webpack 5.
+- Make asset bundle 0.5 KiB smaller by upgrading to webpack 5.
 
 ## [v0.1.2] - 2019-12-27
 
 ### Fixed
 
-* Fix regression in v0.1.1: not full height content on html doc with
+- Fix regression in v0.1.1: not full height content on html doc with
   doctype.
 
 ## [v0.1.1] - 2019-12-27
 
 ### Fixed
 
-* Fix unnecessary vertical scrolling on Mobile Safari.
+- Fix unnecessary vertical scrolling on Mobile Safari.
 
 ## [v0.1.0] - 2019-12-09
 
 ### Added
 
-* First release.
+- First release.
 
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 [Unreleased]: https://github.com/tkareine/hackers-tiny-slide-deck/compare/v0.4.4...HEAD

@@ -29,7 +29,7 @@ _9th Dec 2019_
 An implementation in JavaScript to calculate the [Fibonacci number], to
 demonstrate syntax highlighting with [Prism.js]:
 
-``` javascript
+```javascript
 /* iterative implementation */
 function fibonacci(n) {
   let a = 1
@@ -74,11 +74,11 @@ happens in-browser, with these steps:
 
 1. The script injects an inline CSS `<style>` tag into the `<head>` of
    the document. The styles are used to display `<div
-   class="htsd-slide">` tags (created next) as slides.
+class="htsd-slide">` tags (created next) as slides.
 
 2. The script looks for `<hr>` tags that are direct childs of the
    `<body>` tag, and wraps the contents between the `<hr>`s into `<div
-   class="htsd-slide">` tags.
+class="htsd-slide">` tags.
 
 3. Then, the script installs means for the user to navigate the
    slides. This includes keyboard shortcuts, gestures, and keeping the
@@ -94,12 +94,12 @@ affect slide looks globally. You may override their values by using a
 
 For example, to set the font family for your slide deck:
 
-``` html
+```html
 <style type="text/css" media="screen">
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
-:root {
-  --htsd-sans-font-family: 'Roboto', sans-serif;
-}
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700);
+  :root {
+    --htsd-sans-font-family: "Roboto", sans-serif;
+  }
 </style>
 ```
 
@@ -111,16 +111,14 @@ Highlight code with [Prism.js] by appending the following line to the
 end of the Markdown document (as in the [example][example.md] you're
 looking at):
 
-``` html
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js">
-</script>
+```html
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>
 ```
 
 We use the following CSS to make the font-size in the code snippets of
 this slide smaller:
 
-``` css
+```css
 /* select the html code block in the 7th slide */
 .htsd-slide:nth-of-type(7) pre code {
   font-size: 0.6rem;
@@ -140,7 +138,7 @@ easier.
 
 Let's paint the `<div>` below red:
 
-``` css
+```css
 #htsd-slide--styling-customization--generated-ids .red-block {
   margin-top: 1em;
   width: 5em;
