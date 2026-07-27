@@ -1,9 +1,5 @@
 name: CI
 
-permissions:
-  contents: read
-  id-token: write
-
 on:
   - push
 
@@ -14,6 +10,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         node:
@@ -56,6 +54,9 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     needs:
       - test
     if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
