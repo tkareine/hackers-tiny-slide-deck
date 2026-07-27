@@ -78,7 +78,7 @@ jobs:
           npm_package_version=$(node --eval 'console.log(require("./package.json").version)')
           git_tag_version="${GITHUB_REF_NAME:1}"
           if [[ "$npm_package_version" != "$git_tag_version" ]]; then
-              echo "::error::npm package version and git tag differ: npm_package_version=$npm_package_version git_tag_version=$git_tag_version" >&2
+              echo "::error::npm package version and Git tag differ: npm_package_version=$npm_package_version git_tag_version=$git_tag_version" >&2
               false
           fi
       # Use trusted publishing; see https://docs.npmjs.com/trusted-publishers
