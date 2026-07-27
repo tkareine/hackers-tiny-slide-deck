@@ -27,7 +27,7 @@
    The aim here is to skim the differences between the builds for any
    unexpected changes.
 
-5. Update version number:
+5. Update the version number:
 
    ```shell
    $EDITOR package.json
@@ -39,7 +39,7 @@
    $EDITOR CHANGELOG.md
    ```
 
-7. Review your changes, commit them, tag the release:
+7. Review your changes, commit them, tag the release, and push:
 
    ```shell
    git diff
@@ -48,10 +48,10 @@
    git push origin master v$version
    ```
 
-   Make sure the version string in `package.json` and git tag name
-   match. Note that the git tag name uses the `v` prefix.
+   Make sure that the version string in `package.json` and the Git tag
+   name match. Note that the Git tag name uses the `v` prefix.
 
-   After pushing, the [CI] publishes npm package automatically.
+   After pushing, the [CI] publishes the npm package automatically.
 
 8. Bump development version:
 

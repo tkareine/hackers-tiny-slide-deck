@@ -24,7 +24,7 @@ jobs:
       # Reduce ANSI terminal output for webpack and Cypress
       NO_COLOR: 1
     steps:
-      - name: Checkout git repository
+      - name: Checkout Git repository
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
@@ -60,7 +60,7 @@ jobs:
       - test
     if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     steps:
-      - name: Checkout git repository
+      - name: Checkout Git repository
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
@@ -72,7 +72,7 @@ jobs:
           package-manager-cache: false
       - name: Install npm dependencies
         run: npm ci
-      - name: Check that git tag and npm package version match
+      - name: Check that Git tag and npm package version match
         run: |
           npm_package_version=$(node --eval 'console.log(require("./package.json").version)')
           git_tag_version="${GITHUB_REF_NAME:1}"
