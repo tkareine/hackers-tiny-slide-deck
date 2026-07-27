@@ -30,13 +30,7 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
-      - name: Cache ~/.npm for Node ${{ matrix.node }}
-        uses: actions/cache@v6
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node }}-npm-
+          package-manager-cache: true
       - name: Cache ~/.cache/Cypress for Node ${{ matrix.node }}
         uses: actions/cache@v6
         with:
