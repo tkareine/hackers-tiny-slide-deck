@@ -60,5 +60,8 @@
     "webpack": "^5.1.2",
     "webpack-cli": "^7.0.3",
     "webpack-dev-server": "^6.0.0"
+  },
+  "allowScripts": {
+    "cypress": true
   }
 }
