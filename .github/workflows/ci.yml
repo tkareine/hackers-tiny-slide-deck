@@ -66,7 +66,7 @@ jobs:
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
       - name: Install npm dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Check that Git tag and npm package version match
         run: |
           npm_package_version=$(node --eval 'console.log(require("./package.json").version)')
@@ -77,4 +77,4 @@ jobs:
           fi
       # Use trusted publishing; see https://docs.npmjs.com/trusted-publishers
       - name: Publish npm package
-        run: npm publish
+        run: npm stage publish
